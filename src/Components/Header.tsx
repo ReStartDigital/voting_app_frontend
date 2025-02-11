@@ -27,7 +27,7 @@ const Header:React.FunctionComponent = ()=>{
                     <div className="w-full h-full flex justify-center items-center">
                             <div className="2xl:w-[50%] xl:w-[40%] lg:w-[40%] md:w-[50%] sm:w-[50%] xs:[50%] xx:w-[50%] h-full flex justify-start items-center">
                                 <img className='w-[] object-fill h-[90%] hover:cursor-pointer' onClick={handleHome} src={Logo} alt="logo-picture"/>
-                                <span className="font-bold w-fullfont-kanit text-2xl text-bluerry">eVote Restart</span>
+                                <span className="font-bold w-fullfont-kanit text-2xl text-bluerry align- -ml-5">eVote Restart</span>
                             </div> 
                         <ul className='w-full h-full flex justify-start items-center 2xl:p-4 xl:p-4 lg:p-3 md:p-3 sm:p-1 xs:p-0 xx:p-0'>
                             <li><a href="/election" className='p-4 font-kanit text-fonts active:text-black hover:underline 2xl:flex xl:flex lg:flex md:hidden sm:hidden xs:hidden xx:hidden'>Election</a></li>

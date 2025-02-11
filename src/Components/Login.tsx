@@ -19,7 +19,7 @@ const Login: React.FC = () => {
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>)=>{
       e.preventDefault();
-      const { value, name , type} = e.target;
+      const { value, name } = e.target;
       setFormData({
        ...formData,
         [name] : value,
@@ -43,15 +43,15 @@ const Login: React.FC = () => {
                </div>
                <span className='text-center font-kanit text-bluerry font-bold uppercase text-4xl'>Log-in</span>
                <div className='w-[90%] flex justify-center items-center'>
-                  <input name='email' value={formData.email} onChange={handleChange} className='w-full p-4 bg-gray-100 flex justify-center items-center font-kanit rounded-xl focus:outline-bluerry' type="email" placeholder='Email' required/>
+                  <input name='email' value={formData.email} onChange={handleChange} className='w-full p-4 bg-gray-100 focus:ring-0 border-none flex justify-center items-center font-kanit rounded-xl focus:outline-bluerry' type="email" placeholder='Email' required/>
                </div>
                <div className='w-[90%] flex justify-center items-center'>
-                  <input name="password" onChange={handleChange} value={formData.password} className='w-full p-4 bg-gray-100 flex justify-center items-center font-kanit rounded-xl focus:outline-bluerry' type="password" placeholder='Enter your password' required/>
+                  <input name="password" onChange={handleChange} value={formData.password} className='w-full p-4 focus:ring-0 border-none bg-gray-100 flex justify-center items-center font-kanit rounded-xl focus:outline-bluerry' type="password" placeholder='Enter your password' required/>
                </div>
                <div className='w-[90%] flex justify-end items-center'>
-                  <a href='#' rel="noopener noreferer" className='font-kanit text-bluerry'>forgot password?</a>
+                  <a href='#class' rel="noopener noreferer" className='font-kanit text-bluerry'>forgot password?</a>
                </div>
-               <button type='submit' className='w-[90%] flex justify-center font-kanit font-bold text-white rounded-xl bg-gradient-to-r from-log via-black/90 to-log p-4 to-bluerry items-center' onClick={handleSubmit}>
+               <button type='submit' className='w-[90%] flex justify-center font-kanit font-bold text-white rounded-xl bg-gradient-to-r from-log via-black/90 to-log p-4 items-center' onClick={handleSubmit}>
                     Log-in
                </button>
             </form>

@@ -1,4 +1,5 @@
 import React from "react";
+import { Fade } from "react-awesome-reveal";
 const pic1 = require("../assets/images/Frame29.png");
 const pic2 = require("../assets/images/Frame30.png");
 const pic3 = require("../assets/images/Frame31.png");
@@ -12,7 +13,7 @@ const pic8 = require("../assets/images/comments.png");
 const AfterLogin:React.FC = ()=>{
     return (
         <section className='w-full h-screen flex justify-start items-center flex-col overflow-x-hidden'>
-            <div className='w-[88%] p-4 flex 2xl:flex-row  xl:flex-row lg:flex-row md:flex-col 2xl:space-y-0 xl:space-y-0 lg:space-y-0 md:space-y-8 sm:space-y-8 xs:space-y-8 xx:space-y-8 sm:flex-col xs:flex-col xx:flex-col justify-between items-center border-dashed border-b-2 border-need'>
+            <div className='w-[95%] p-4 flex 2xl:flex-row  xl:flex-row lg:flex-row md:flex-col 2xl:space-y-0 xl:space-y-0 lg:space-y-0 md:space-y-8 sm:space-y-8 xs:space-y-8 xx:space-y-8 sm:flex-col xs:flex-col xx:flex-col justify-between items-center border-dashed border-b-2 border-need'>
                 <button className='2xl:w-[20%] xl:w-[20%] lg:w-[50%] md:w-full sm:w-full xs:w-full xx:w-full bg-bluerry p-1 font-kanit text-white rounded-xl flex justify-center items-center'>
                     Start a voting process
                     <svg width="40" height="40" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -28,7 +29,7 @@ const AfterLogin:React.FC = ()=>{
                     <span className='font-kanit text-need ml-2'>Need help?</span>
                 </div>
             </div>
-            <div className='w-full h-80vh  mt-8 relative'>
+            <div className='w-full h-full mt-8 relative'>
                 <img src={pic4} alt="background-image" className="w-full 2xl:h-full xl:h-full lg:h-full md:h-[60%] sm:h-[60%] xs:h-[60%] xx:h-[60%] object-cover" />
                 <div className='2xl:w-[60%] xl:w-[60%] lg:w-[60%] md:w-full sm:w-full xs:w-full xx:w-full absolute top-[30%] left-[25%] flex justify-center items-center'>
                     <span className='text-white text-center font-kanit 2xl:text-8xl xl:text-8xl lg:text-6xl md:text-5xl sm:text-6xl xs:text-5xl xx:text-5xl capitalize'>
@@ -152,8 +153,31 @@ const AfterLogin:React.FC = ()=>{
                         </div>
                     </div>
                 </div>
-                <div className='w-full h-50vh'>
-
+                <div className='w-full h-full mb-8 bg-gradient-to-t from-darkerblue to-darkenblue'>
+                    <div className="w-full flex justify-center items-center h-10vh">
+                        <span className="uppercase font-kanit text-blueblue space-x-3">how it works</span>
+                    </div>
+                    <div className="w-full flex justify-center items-center h-10vh">
+                        <span className="capitalize text-6xl space-x-3 font-kanit text-white">online voting made faster</span>
+                    </div>
+                    <div className="w-full bg-red-500 h-full flex justify-center items-center">
+                        <div className="w-[80%] h-full gap-4 flex justify-center items-center p-4">
+                            <Fade direction='up' triggerOnce className='w-full h-full'>
+                                <div className='w-full h-full bg-blue-500'>
+                                    hello
+                                </div>
+                            </Fade>
+                            <Fade direction='up' triggerOnce className='w-full h-full'>
+                                <div className='w-full h-full bg-blue-500 flex justify-center items-center flex-col gap-5 p-4'>
+                                   <div className="w-full h-full bg-yellow-500">Hello</div>
+                                   <div className="w-full h-full bg-yellow-500">Hello</div>
+                                   <div className="w-full h-full bg-yellow-500">Hello</div>
+                                   <div className="w-full h-full bg-yellow-500">Hello</div>
+                                </div>
+                            </Fade>
+                            
+                        </div> 
+                    </div>
                 </div>
             </div>
         </section>
