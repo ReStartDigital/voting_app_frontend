@@ -10,7 +10,10 @@ export default {
         "custBrown":"#F7C986",
         "lightBrown":"#ECE7DE",
         "bluerry":"#064A7B",
-        "fonts":"#494747"
+        "fonts":"#494747",
+        "log":"#064A7B",
+        "need":"#565454",
+        "subject":"#EEF8FF"
       },
       screens:{
         'xs': "350px",

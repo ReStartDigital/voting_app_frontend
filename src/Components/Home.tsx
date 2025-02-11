@@ -28,7 +28,9 @@ const Home:React.FunctionComponent = ()=>{
                     <img src={Details} alt="Detail"/>
                 </div>
             </div>
-            <div></div>
+            {/* <div className='w-full bg-red-500'>
+               <input type='text' placeholder="" className='font-kanit '/>
+            </div> */}
        </section>
     )
 }

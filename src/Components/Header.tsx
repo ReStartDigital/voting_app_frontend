@@ -25,7 +25,7 @@ const Header:React.FunctionComponent = ()=>{
         <section className='w-full h-10vh bg-white flex 2xl:justify-center z-30 xl:justify-center lg:justify-center md:justify-between xs:justify-between xx:justify-between items-center gap-5  p-1 overflow-x-hidden'>
             <div className='w-full h-[10%] bg-inherit flex justify-center items-center fixed z-30 shadow-md shadow-gray-200'>
                     <div className="w-full h-full flex justify-center items-center">
-                            <div className="2xl:w-[50%] xl:w-[10%] lg:w-[15%] md:w-[20%] sm:w-[25%] xs:[30%] h-full flex justify-center items-center">
+                            <div className="2xl:w-[50%] xl:w-[40%] lg:w-[40%] md:w-[50%] sm:w-[50%] xs:[50%] xx:w-[50%] h-full flex justify-start items-center">
                                 <img className='w-[] object-fill h-[90%] hover:cursor-pointer' onClick={handleHome} src={Logo} alt="logo-picture"/>
                                 <span className="font-bold w-fullfont-kanit text-2xl text-bluerry">eVote Restart</span>
                             </div> 
@@ -36,7 +36,7 @@ const Header:React.FunctionComponent = ()=>{
                             <li><a href="/terms" className='p-4 font-kanit text-fonts 2xl:flex xl:flex lg:flex md:hidden sm:hidden xs:hidden xx:hidden hover:text-black hover:underline'>Terms &amp; Conditions</a></li>             
                         </ul>
                     </div>
-                    <div className="2xl:w-[26%] xl:w-[60%] lg:w-[60%] md:w-[70%] sm:w-[90%] xs:w-[90%] xx:w-[90%] h-full flex 2xl:justify-center xl:justify-center lg:justify-center md:justify-between sm:justify-center xs:justify-between items-center 2xl:p-2 xl:p-2 lg:p-2 md:p-0 sm:p-0 xs:p-0">
+                    <div className="2xl:w-[22%] xl:w-[30%] lg:w-[30%] md:w-[30%] sm:w-[60%] xs:w-[90%] xx:w-[90%] h-full flex 2xl:justify-center xl:justify-center lg:justify-center md:justify-between sm:justify-center xs:justify-between items-center 2xl:p-2 xl:p-2 lg:p-2 md:p-0 sm:p-0 xs:p-0">
                         <div className='w-[45%] h-[70%] hover:cursor-pointer bg-bluerry flex justify-center items-center 2xl:flex xl:flex lg:flex md:hidden sm:hidden xs:hidden xx:hidden pl-2 pr-2 rounded-md'>
                             <span className='text-white font-kanit' onClick={loginHandler}>Login</span>
                         </div>
