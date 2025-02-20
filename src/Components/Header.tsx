@@ -32,7 +32,7 @@ const Header:React.FunctionComponent = ()=>{
                         <ul className='w-full h-full flex justify-start items-center 2xl:p-4 xl:p-4 lg:p-3 md:p-3 sm:p-1 xs:p-0 xx:p-0'>
                             <li><a href="/election" className='p-4 font-kanit text-fonts active:text-black hover:underline 2xl:flex xl:flex lg:flex md:hidden sm:hidden xs:hidden xx:hidden'>Election</a></li>
                             <li><a href="/contact-us" className='p-4 font-kanit text-fonts 2xl:flex xl:flex lg:flex md:hidden sm:hidden xs:hidden xx:hidden hover:text-black hover:underline'>Contact Us</a></li>
-                            <li><a href="/policy" className="p-4 font-kanit text-fonts 2xl:flex xl:flex lg:flex md:hidden sm:hidden xs:hidden xx:hidden hover:text-black hover:underline">Privacy Policy</a></li>
+                            <li><a href="/security" className="p-4 font-kanit text-fonts 2xl:flex xl:flex lg:flex md:hidden sm:hidden xs:hidden xx:hidden hover:text-black hover:underline">Security</a></li>
                             <li><a href="/terms" className='p-4 font-kanit text-fonts 2xl:flex xl:flex lg:flex md:hidden sm:hidden xs:hidden xx:hidden hover:text-black hover:underline'>Terms &amp; Conditions</a></li>             
                         </ul>
                     </div>

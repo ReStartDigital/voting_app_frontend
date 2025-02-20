@@ -1,5 +1,6 @@
 import React , { useState }  from 'react';
 import axios from "axios";
+import ChangeState from '../store/UseChangeState';
 const Logo = require("../assets/images/logo.png")
 
 
@@ -10,7 +11,7 @@ type User = {
 }
 
 const Login: React.FC = () => {
- 
+  const { text, setLogMessage } = ChangeState();
     const [ formData , setFormData ] = useState<User>({
         email:"",
         password:"",
@@ -28,9 +29,20 @@ const Login: React.FC = () => {
   }
 
     const handleSubmit = async(e: any)=>{
-      e.preventDefault();
-        const response = await axios.post("http://localhost:6060/login", formData , { withCredentials: true })
+      try{
+        e.preventDefault();
+        const response = await axios.post("http://localhost:6060/auth/login", formData , { withCredentials: true })
         console.log(response.data);
+        if(response.data){
+          sessionStorage.setItem("token", response.data.token);
+          sessionStorage.setItem("user_id", response.data.userId);
+        }
+      }
+      catch(error: any){
+        setLogMessage(error.response?.data?.password || "Login failed");
+        console.error(error);
+      }
+        
     }
 
 
@@ -42,6 +54,9 @@ const Login: React.FC = () => {
                   <img src={Logo} alt="logo" className='object-cover' />
                </div>
                <span className='text-center font-kanit text-bluerry font-bold uppercase text-4xl'>Log-in</span>
+               <div className='w-full flex justify-center items-center'>
+                  <span className='text-red-500 text-center font-kanit'>{text}</span>
+               </div>
                <div className='w-[90%] flex justify-center items-center'>
                   <input name='email' value={formData.email} onChange={handleChange} className='w-full p-4 bg-gray-100 focus:ring-0 border-none flex justify-center items-center font-kanit rounded-xl focus:outline-bluerry' type="email" placeholder='Email' required/>
                </div>
@@ -49,7 +64,7 @@ const Login: React.FC = () => {
                   <input name="password" onChange={handleChange} value={formData.password} className='w-full p-4 focus:ring-0 border-none bg-gray-100 flex justify-center items-center font-kanit rounded-xl focus:outline-bluerry' type="password" placeholder='Enter your password' required/>
                </div>
                <div className='w-[90%] flex justify-end items-center'>
-                  <a href='#class' rel="noopener noreferer" className='font-kanit text-bluerry'>forgot password?</a>
+                  <a href='/forgot-password' rel="noopener noreferer" className='font-kanit text-bluerry'>forgot password?</a>
                </div>
                <button type='submit' className='w-[90%] flex justify-center font-kanit font-bold text-white rounded-xl bg-gradient-to-r from-log via-black/90 to-log p-4 items-center' onClick={handleSubmit}>
                     Log-in

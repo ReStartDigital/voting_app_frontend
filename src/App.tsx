@@ -5,7 +5,12 @@ import Header from "./Components/Header";
 import Home from "./Components/Home";
 import Login from "./Components/Login";
 import Register from "./Components/Register";
-import AfterLogin from "./Components/AfterLogin";
+import Election from './Components/election';
+import Forgotpassword from './Reusable/ForgotPassword';
+import Security from './Components/Security';
+import ChangePassword from './Reusable/ChangePassword';
+
+
 
 
 const App:React.FunctionComponent = ()=>{
@@ -17,7 +22,10 @@ const App:React.FunctionComponent = ()=>{
               <Route path='/' element={<Home/>}/>
               <Route path="/login/user" element={<Login/>} />
               <Route path="/register/user" element={<Register/>}/> 
-              <Route path="/election" element={<AfterLogin/>} /> 
+              <Route path="/election" element={<Election/>} /> 
+              <Route path="/forgot-password" element={<Forgotpassword/>} />
+              <Route path='/security' element={<Security/>}/>
+              <Route path='/change/password/user/vote-app' element={<ChangePassword/>}/>
           </Routes>
       </Router>
     
