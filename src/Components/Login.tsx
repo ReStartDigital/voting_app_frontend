@@ -1,7 +1,8 @@
 import React , { useState }  from 'react';
 import axios from "axios";
 import ChangeState from '../store/UseChangeState';
-const Logo = require("../assets/images/logo.png")
+import { Spinner } from 'flowbite-react';
+const Logo = require("../assets/images/logo.png");
 
 
 type User = {
@@ -12,6 +13,7 @@ type User = {
 
 const Login: React.FC = () => {
   const { text, setLogMessage } = ChangeState();
+  const [ loading , setLoading ] = useState<boolean>(false);
     const [ formData , setFormData ] = useState<User>({
         email:"",
         password:"",
@@ -30,16 +32,23 @@ const Login: React.FC = () => {
 
     const handleSubmit = async(e: any)=>{
       try{
+        setLoading(true);
         e.preventDefault();
         const response = await axios.post("http://localhost:6060/auth/login", formData , { withCredentials: true })
         console.log(response.data);
-        if(response.data){
+        if(response.data.token && response.data.userId){
           sessionStorage.setItem("token", response.data.token);
           sessionStorage.setItem("user_id", response.data.userId);
+          
+          setLoading(false);
+        }else{
+          setLogMessage(response?.data?.password || response?.data?.message);
+          setLoading(false)
         }
       }
       catch(error: any){
-        setLogMessage(error.response?.data?.password || "Login failed");
+        setLogMessage(error.response?.data?.password || error.response?.data?.message);
+        setLoading(false);
         console.error(error);
       }
         
@@ -67,7 +76,10 @@ const Login: React.FC = () => {
                   <a href='/forgot-password' rel="noopener noreferer" className='font-kanit text-bluerry'>forgot password?</a>
                </div>
                <button type='submit' className='w-[90%] flex justify-center font-kanit font-bold text-white rounded-xl bg-gradient-to-r from-log via-black/90 to-log p-4 items-center' onClick={handleSubmit}>
-                    Log-in
+               {
+                  loading ? (<Spinner/>) : "Log-in"
+               }
+                    
                </button>
             </form>
         </div>

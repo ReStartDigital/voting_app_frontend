@@ -9,15 +9,24 @@ import Election from './Components/election';
 import Forgotpassword from './Reusable/ForgotPassword';
 import Security from './Components/Security';
 import ChangePassword from './Reusable/ChangePassword';
+import Dashboard from './AuthComponents/Dashboard';
+import { useLocation } from 'react-router-dom';
 
-
+ const RenderHeader = ()=>{
+    const navigate = useLocation();
+    if(navigate.pathname === "/admin/dashboard/election"){
+      return null;
+    };
+    return <Header/>;
+  }
 
 
 const App:React.FunctionComponent = ()=>{
+  
+ 
   return (
-    <>
-      <Header/>
-      <Router>
+      <Router> 
+        <RenderHeader/>
           <Routes>
               <Route path='/' element={<Home/>}/>
               <Route path="/login/user" element={<Login/>} />
@@ -25,11 +34,10 @@ const App:React.FunctionComponent = ()=>{
               <Route path="/election" element={<Election/>} /> 
               <Route path="/forgot-password" element={<Forgotpassword/>} />
               <Route path='/security' element={<Security/>}/>
-              <Route path='/change/password/user/vote-app' element={<ChangePassword/>}/>
+              <Route path='/change/password/user/vote-app/reset-password' element={<ChangePassword/>}/>
+              <Route path='/admin/dashboard/election' element={<Dashboard/>}/>
           </Routes>
       </Router>
-    
-  </>
   );
 }
 

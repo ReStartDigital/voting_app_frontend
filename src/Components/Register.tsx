@@ -116,6 +116,7 @@ const Register:React.FunctionComponent = ()=>{
                <div className='w-[90%] flex justify-center items-center'>
                   <input value={formData.dateOfBirth} className='w-full p-4 bg-gray-100 flex justify-center focus:ring-0 items-center font-kanit rounded-xl focus:outline-bluerry border-none outline-none' type="date" placeholder='Enter your password' name='dateOfBirth' onChange={handleChange}required/>
                </div>
+               
                <button type='submit' disabled={loading} className={`w-[90%] ${state ? "bg-gradient-to-r from-log via-black/90 to-log" : "bg-gray-200"  } flex justify-center font-kanit font-bold text-white rounded-xl  p-4  items-center`} onClick={handleSubmit}>
                     Sign-up
                </button>

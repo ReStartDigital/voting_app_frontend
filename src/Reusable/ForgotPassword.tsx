@@ -1,6 +1,8 @@
+/* eslint-disable react/jsx-no-undef */
 import { useState } from "react";
 import axios from "axios";
-
+import useTextStore from "../store/UseTextStore";
+import { Spinner } from "flowbite-react";
 
 
 type EmailProps = {
@@ -12,6 +14,8 @@ const Forgotpassword = () => {
     email: ""
   });
   const [error, setError] = useState<string>("");
+  const { text , setText } = useTextStore();
+  const [ loading , setLoading ] = useState<boolean>(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>)=>{
     const { name , value } = e.target;
@@ -23,14 +27,16 @@ const Forgotpassword = () => {
 
   const handleSubmit = async(e: any) => {
     try{
+        setLoading(true);
         e.preventDefault();
         if (!formData.email.includes("@")) {
         setError("Please enter a valid email address");
         return;
         };
-        sessionStorage.setItem("user_email", formData.email);
         const response = await axios.put(`http://localhost:6060/auth/forgot-password`, formData , { withCredentials: true });
         console.log(response.data);
+        setText(response.data.message);
+        setLoading(false);
         setError("");
     }catch(e: any){
         console.log(e);
@@ -42,7 +48,7 @@ const Forgotpassword = () => {
   return (
     <div className="w-full flex justify-center flex-col items-center h-80vh">
         <div>
-            <span className="font-kanit text-4xl">Enter email used when creating your account.</span>
+            <span className="font-kanit text-4xl">{text}</span>
         </div>
       <form className="p-4 w-80">
         <label className="block mb-2 text-sm font-kanit text-gray-700">
@@ -62,7 +68,10 @@ const Forgotpassword = () => {
           className="w-full bg-bluerry font-kanit text-white py-2 rounded-md"
           onClick={handleSubmit}
         >
-          Submit
+          {
+            loading ? (<Spinner/>) : "Submit"
+          }
+         
         </button>
       </form>
     </div>

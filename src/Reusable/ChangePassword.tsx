@@ -1,6 +1,7 @@
 import React , { useState } from 'react';
 import axios from "axios";
 import { useSearchParams } from "react-router-dom";
+import { Spinner } from 'flowbite-react';
 
 type Details = {
     password: string,
@@ -13,14 +14,22 @@ const ChangePassword = () => {
         confirmPassword: ""
     });
   const [error, setError] = useState<string>("");
+  const [ loading , setLoading ] = useState<boolean>(false);
   const [ searchParams ] = useSearchParams();
   const token = searchParams.get("token");
 
   const handleSubmit = async(e: any) => {
     try{
+        setLoading(true);
         e.preventDefault();
-        const response = await axios.post(`http://localhost:6060/auth/reset-password?token=${token}`, );
+        if(formData.password !== formData.confirmPassword){
+          setError("Password must be equal");
+          setLoading(false);
+          return;
+        };
+        const response = await axios.post(`http://localhost:6060/auth/reset-password?token=${token}`, formData , { withCredentials: true});
         console.log(response.data);
+        setLoading(false);
         setError("");
     }catch(e: any){
       console.error(e);
@@ -63,12 +72,14 @@ const ChangePassword = () => {
         required
       />
     </label>
-    {error && <p className="text-red-500 text-sm mb-2">{error}</p>}
+    {error && <p className="text-red-500 text-sm mb-2 font-kanit">{error}</p>}
     <button
       type="submit"
       className="w-full bg-bluerry font-kanit text-white py-2 rounded-md"
         onClick={handleSubmit}>
-      Submit
+      {
+        loading ? (<Spinner/>) : "Submit"
+      }
     </button>
   </form>
 </div>
