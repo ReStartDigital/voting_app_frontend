@@ -20,7 +20,8 @@ export default {
         "subject":"#EEF8FF",
         "darkerblue":"#051059",
         "darkenblue":"#081A8C",
-        "blueblue":"#0A88E1"
+        "blueblue":"#0A88E1",
+        "lighter": "#B6DAF8"
       },
       screens:{
         'xs': "350px",

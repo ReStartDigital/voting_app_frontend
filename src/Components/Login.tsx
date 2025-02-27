@@ -41,6 +41,7 @@ const Login: React.FC = () => {
           sessionStorage.setItem("user_id", response.data.userId);
           
           setLoading(false);
+          window.location.href = "/user/default/page";
         }else{
           setLogMessage(response?.data?.password || response?.data?.message);
           setLoading(false)

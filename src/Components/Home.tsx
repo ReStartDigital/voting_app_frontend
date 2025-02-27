@@ -8,10 +8,10 @@ const Home:React.FunctionComponent = ()=>{
 
     return (
         <section className="w-full h-full flex justify-start items-center flex-col overflow-x-hidden">
-            <div className='w-full h-full flex justify-center items-center p-4'>
-                <div className="w-full h-60vh flex justify-start p-4 items-start flex-col gap-2">
+            <div className='w-full h-full flex justify-center items-center p-4 2xl:flex-row xl:flex-row lg:flex-row md:flex-col-reverse sm:flex-col-reverse xs:flex-col-reverse xx:flex-col-reverse'>
+                <div className="w-full 2xl:h-60vh xl:h-60vh lg:h-full md:h-full sm:h-full xs:h-full xx:h-full flex justify-start p-4 items-start flex-col gap-2">
                     <div className=''>
-                         <span className='text-6xl text-bluerry font-kanit font-bold'>Secure and Easy Voting</span>
+                         <span className='2xl:text-6xl xl:text-6xl lg:text-4xl md:text-3xl sm:text-2xl xs:text-3xl xx:text-3xl text-bluerry font-kanit font-bold'>Secure and Easy Voting</span>
                     </div>
                    <div className=''>
                     <span className='font-kanit text-bluerry'>

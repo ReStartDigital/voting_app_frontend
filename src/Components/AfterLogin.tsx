@@ -30,29 +30,34 @@ const AfterLogin:React.FC = ()=>{
                     <span className='font-kanit text-need ml-2'>Need help?</span>
                 </div>
             </div>
-            <div className='w-full h-full mt-8 relative'>
-                <img src={pic4} alt="background-image" className="w-full 2xl:h-full xl:h-full lg:h-full md:h-[60%] sm:h-[60%] xs:h-[60%] xx:h-[60%] object-cover" />
-                <div className='2xl:w-[60%] xl:w-[60%] lg:w-[60%] md:w-full sm:w-full xs:w-full xx:w-full absolute top-[30%] left-[25%] flex justify-center items-center'>
-                    <span className='text-white text-center font-kanit 2xl:text-8xl xl:text-8xl lg:text-6xl md:text-5xl sm:text-6xl xs:text-5xl xx:text-5xl capitalize'>
-                        Online Voting, Made simple
-                    </span>
-                </div>
-                <div className='w-full p-4 flex justify-center items-center'>
-                    <div className='w-[89%] p-4 flex justify-start items-center border-dashed border-b-2 border-need'>
+            <div className="w-full h-full mt-8">
+                <div className='w-full h-60vh relative'>
+                    <img src={pic4} alt="background-image" className="absolute w-full 2xl:h-full xl:h-full lg:h-full md:h-full sm:h-full xs:h-full xx:h-[60%] object-cover" />
+                    <div className='2xl:w-full xl:w-full lg:w-full z-40 md:w-full h-full sm:w-full xs:w-full xx:w-full absolute inset-0 flex justify-center items-center'>
+                        <span className='text-white text-center font-kanit 2xl:text-8xl xl:text-8xl lg:text-6xl md:text-5xl sm:text-6xl xs:text-5xl xx:text-5xl capitalize'>
+                            Online Voting, Made simple
+                        </span>
+                    </div>
+                    <div className='w-full p-4 flex justify-center items-center'>
+                        <div className='w-[89%] p-4 flex justify-start items-center border-dashed border-b-2 border-need'>
 
+                        </div>
                     </div>
                 </div>
-                <div className="w-full h-20vh flex justify-center items-center">
-                    <div className='w-[88%] flex flex-col'>
-                        <span className='capitalize font-kanit text-bluerry'>why choose evote Restart</span>
+            </div>
+           
+            <div className='w-full h-full mt-8'>
+                <div className="w-full h-15vh flex justify-center items-center">
+                    <div className='w-[88%]'>
+                        <span className='capitalize font-kanit text-bluerry'>why choose evote Restart</span><br/>
                         <span className='uppercase text-need font-kanit 2xl:text-5xl xl:text-5xl lg:text-4xl md:text-3xl sm:text-2xl xs:text-2xl xx:text-xl '>transform your approach to voting</span>
                     </div>
                    
                 </div>
-                <div className='w-full h-full flex justify-center items-center'>
-                    <div className='w-[88%] grid 2xl:grid-cols-2 xl:grid-cols-2 lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 xs:grid-cols-1 xx:grid-cols-1 gap-5'>
-                    <div className="bg-subject rounded-lg h-full flex justify-between items-center p-4">
-                            <div className='flex flex-col justify-center items-start'>
+                <div className='w-full h-full 2xl:p-4 xl:p-4 lg:p-3 md:p-2 sm:p-0 xs:p-0 xx:p-0 flex justify-center items-center'>
+                    <div className='w-[88%] grid 2xl:grid-cols-2 xl:grid-cols-2 lg:grid-cols-2 md:grid-cols-1 sm:grid-cols-1 xs:grid-cols-1 xx:grid-cols-1 gap-4 2xl:p-4 xl:p-4 lg:p-3 md:p-2 sm:p-0 xs:p-0 xx:p-0'>
+                    <div className="bg-subject rounded-lg h-full flex justify-between items-center 2xl:p-4 xl:p-4 lg:p-3 md:p-2 sm:p-0 xs:p-0 xx:p-0 ">
+                            <div className='w-full flex flex-col justify-center items-start'>
                                 <div className="bg-subject h-full flex justify-between items-center">
                                     <div className='flex flex-col justify-center items-start'>
                                         <span className='text-bluerry text-3xl font-kanit'>Security System</span>
@@ -162,7 +167,7 @@ const AfterLogin:React.FC = ()=>{
                         <span className="capitalize text-6xl space-x-3 font-kanit text-white">online voting made faster</span>
                     </div>
                     <div className="w-full h-[80%] flex justify-center items-center">
-                        <div className="w-[80%] h-full gap-4 flex justify-center items-center p-4">
+                        <div className="w-[80%] h-full 2xl:flex-row xl:flex-row lg:flex-row md:flex-col sm:flex-col xs:flex-col xx:flex-col gap-4 flex justify-center items-center p-4">
                             <Fade direction='up' triggerOnce className='w-full h-[85%]'>
                                 <div className='w-full h-full bg-blue-500 rounded-lg'>
                                     
