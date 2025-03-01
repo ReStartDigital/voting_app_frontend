@@ -2,6 +2,7 @@ import React , { useState } from 'react';
 import axios from "axios";
 import { toast , Toaster } from "react-hot-toast";
 import Verify from '../Reusable/Verfity';
+import { Spinner } from 'flowbite-react';
 const Logo = require("../assets/images/logo.png")
 
 export interface UserDetails {
@@ -40,8 +41,10 @@ const Register:React.FunctionComponent = ()=>{
          const first = formData.firstname.length > 3 && formData.firstname.length <= 20 ? formData.firstname : toast.error("Name length must greater than 3 characters");
          if (formData.password !== formData.confirmPassword){
              toast.error("Passwords do not match");
+             setLoading(false);
          }else if(convert < 18){
              toast.error("Must be 18 or above")
+             setLoading(false)
          }else{
              setLoading(true);
               const response = await axios.post("http://localhost:6060/auth/register" , formData,{ withCredentials: true }) //insert backend url here
@@ -49,6 +52,7 @@ const Register:React.FunctionComponent = ()=>{
             if(response.data.states){
                setDisplay(true);
                console.log(response.data)
+               setLoading(false);
                  //toast.error(response.data.state)
                  //setLoading(false);
             }
@@ -60,6 +64,7 @@ const Register:React.FunctionComponent = ()=>{
          }
      }catch(err:any){
          toast.error(err.response.data.message)
+         setLoading(false)
      }
     }
 
@@ -118,7 +123,10 @@ const Register:React.FunctionComponent = ()=>{
                </div>
                
                <button type='submit' disabled={loading} className={`w-[90%] ${state ? "bg-gradient-to-r from-log via-black/90 to-log" : "bg-gray-200"  } flex justify-center font-kanit font-bold text-white rounded-xl  p-4  items-center`} onClick={handleSubmit}>
-                    Sign-up
+               {
+                  loading ? <Spinner/> : " Sign-up"
+               }
+                   
                </button>
             </form>
         </div>
