@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React , { useState , useEffect } from 'react';
 import Title from "../Reusable/Title";
@@ -109,6 +110,26 @@ useEffect(()=>{
     }
   };
 
+  const handleDelete = async()=>{
+    const user_id = sessionStorage.getItem("user_id");
+    const token = sessionStorage.getItem("token");
+    if (!user_id || !token) {
+        return;
+    }
+
+    const response = await axios.delete(`http://localhost:6060/protected/router/delete/account/${user_id}`, {
+        withCredentials: true,
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+    });
+    if(response.data){
+        console.log(response?.data.message);
+        setFormData(prev => ({ ...prev, image:response.data.image , organization: response.data.organization }));
+
+    };
+  }
+  
   const handleSubmit = async(e: React.FormEvent)=>{
     const id = sessionStorage.getItem("user_id");
     e.preventDefault();
@@ -200,7 +221,7 @@ useEffect(()=>{
                           loading ? <Spinner/> : " Save Settings"
                         }
                        </button>
-                      <span className='font-kanit hover:cursor-pointer text-red-500 p-4 capitalize'>close account</span>
+                      <span className='font-kanit hover:cursor-pointer text-red-500 p-4 capitalize' onClick={handleDelete}>close account</span>
                     </div>
                   </form>
               </div>
