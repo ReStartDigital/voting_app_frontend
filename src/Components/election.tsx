@@ -33,7 +33,7 @@ const Election: React.FC= ()=>{
             <div>
               <h2 className="2xl:text-6xl xl:text-6xl lg:text-5xl md:text-5xl sm:text-4xl xs:text-4xl xx:text-4xl font-bold mb-4 font-kanit text-need">Voting system designed for students.</h2>
               <ul className="space-y-2">
-                <li className="flex items-center"><span className="text-blue-500 mr-2 font-kanit">✔</span><span className="font-kanit">Create unlimited <a href="#" className="text-blue-500 underline">online ballots</a></span></li>
+                <li className="flex items-center"><span className="text-blue-500 mr-2 font-kanit">✔</span><span className="font-kanit">Create unlimited <a href="#" className="text-bluerry">online ballots</a></span></li>
                 <li className="flex items-center"><span className="text-blue-500 mr-2 font-kanit">✔</span><span className="font-kanit">Collect responses from eligible voters</span></li>
                 <li className="flex items-center"><span className="text-blue-500 mr-2 font-kanit">✔</span><span className="font-kanit">Review results and make decisions – no app required</span></li>
               </ul>

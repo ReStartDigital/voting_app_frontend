@@ -193,7 +193,6 @@ useEffect(()=>{
                         </label>
                         <input accept="image/*" required type="file" onChange={handleImageChange} className="hidden hover:cursor-pointer" id="file"/>
                       </form>
-                      
                     </div>
                   </div>
               </div>
