@@ -124,7 +124,6 @@ useEffect(()=>{
         }
     });
     if(response.data){
-        console.log(response?.data.message);
         setFormData(prev => ({ ...prev, image:response.data.image , organization: response.data.organization }));
 
     };
@@ -173,8 +172,8 @@ useEffect(()=>{
               <img src={background} alt="" className="w-full h-full object-cover relative"/>
           </div>
           <div className="2xl:w-[60%] xl:w-[60%] lg:w-[70%] md:w-full sm:w-full xs:w-full xx:w-full absolute z-40 h-full bg-white flex-col flex justify-start items-start">
-              <div className="w-full h-48 flex justify-center items-center ">
-                  <div className='rounded-full 2xl:w-[20%] xl:w-[20%] lg:w-[40%] md:w-[70%] sm:w-[50%] xx:w-[50%] xs:w-[50%] h-[90%] bg-gray-300 flex justify-center items-center relative'>
+              <div className="w-full h-48 flex justify-center items-center">
+                  <div className='rounded-full 2xl:w-[20%] xl:w-[20%] lg:w-[40%] md:w-[70%] sm:w-[40%] xx:w-[35%] xs:w-[38%] h-[90%] bg-gray-300 flex justify-center items-center relative'>
                   {formData.image ? (
                         <img src={`data:image/jpeg;base64,${formData.image}`} alt="Preview" className="w-full h-full object-cover rounded-full" />
                       ) : (

@@ -1,7 +1,7 @@
 import React from 'react';
 import Title from '../Reusable/Title';
 import  UseStore  from "../store/UseStore";
-import ElectionSetup from "./ElectionSetup";
+import ElectionForm from "../Components/ElectionForm";
 
 const Launch = () => {
     const { initial , toggleState } = UseStore();
@@ -13,7 +13,7 @@ const Launch = () => {
     <section className='w-full h-80vh flex justify-start flex-col items-start'>
         <div className="w-full relative">
             {
-                initial && (<ElectionSetup/>)
+                initial && (<ElectionForm/>)
             }
         </div>
 

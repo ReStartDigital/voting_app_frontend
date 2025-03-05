@@ -48,12 +48,9 @@ const Header:React.FunctionComponent = ()=>{
                         
                     </div>
                     <div className='w-full h-full 2xl:hidden xl:hidden lg:hidden md:flex sm:flex xs:flex xx:flex justify-end items-center p-2'>
-                        <svg onClick={handleClick} xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30" height="30" viewBox="0 0 50 50">
-                            <path d="M 0 7.5 L 0 12.5 L 50 12.5 L 50 7.5 L 0 7.5 z M 0 22.5 L 0 27.5 L 50 27.5 L 50 22.5 L 0 22.5 z M 0 37.5 L 0 42.5 L 50 42.5 L 50 37.5 L 0 37.5 z"></path>
-                        </svg>
-                        {/* <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 28 28">
+                        { <svg onClick={handleClick} xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 28 28">
                             <path fill="currentColor" d="M3 6.75A.75.75 0 0 1 3.75 6h18.5a.75.75 0 0 1 0 1.5H3.75A.75.75 0 0 1 3 6.75m0 14a.75.75 0 0 1 .75-.75h16.5a.75.75 0 0 1 0 1.5H3.75a.75.75 0 0 1-.75-.75M3.75 13a.75.75 0 0 0 0 1.5h20.5a.75.75 0 0 0 0-1.5z"/>
-                        </svg> */}
+                        </svg> }
                     </div>
 
                 </div>
