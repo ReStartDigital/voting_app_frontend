@@ -7,23 +7,6 @@ import Footer from "./Components/Footer";
 import Home from "./Components/Home";
 import Login from "./Components/Login";
 import Register from "./Components/Register";
-<<<<<<< Updated upstream
-
-
-const App:React.FunctionComponent = ()=>{
-  return (
-    <>
-      <Header/>
-      <Router>
-          <Routes>
-              <Route path='/' element={<Home/>}/>
-              <Route path="/login/user" element={<Login/>} />
-              <Route path="/register/user" element={<Register/>}/>   
-          </Routes>
-      </Router>
-    
-  </>
-=======
 import Election from "./Components/election";
 import Terms from "./Components/terms";
 import Forgotpassword from "./Reusable/ForgotPassword";
@@ -83,7 +66,6 @@ const App: React.FC = () => {
       </Routes>
       <Footer />
     </Router>
->>>>>>> Stashed changes
   );
 };
 

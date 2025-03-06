@@ -223,6 +223,9 @@ const Register:React.FunctionComponent = ()=>{
         </section>
     );
 };
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 
 export default Register;

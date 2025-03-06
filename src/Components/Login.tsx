@@ -137,6 +137,9 @@ const Login: React.FC = () => {
           </div>
         </div>
       </div>
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
     </section>
   );
