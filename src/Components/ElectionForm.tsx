@@ -2,9 +2,11 @@ import { useState } from "react";
 import {Label, TextInput, Textarea, Button, Spinner} from "flowbite-react";
 import axios from "axios";
 import {toast, Toaster} from "react-hot-toast";
+import Usestore from "../store/UseStore";
 
 export default function ElectionForm() {
-    const [ loading , setLoading ] = useState<boolean>(true);
+    const [ loading , setLoading ] = useState<boolean>(false);
+    const { initial , toggleState } = Usestore();
     // State to manage form fields
     const [formData, setFormData] = useState({
         title: "",
@@ -54,22 +56,38 @@ export default function ElectionForm() {
                 }
             );
 
-            toast.success("Election created successfully!");
+            toast.success("Election created successfully!" , {
+                style: {
+                    backgroundColor: "black",
+                    fontFamily: "kanit",
+                    color: "white"
+                }
+            });
             setLoading(false);
             console.log("Response:", response.data);
             setFormData({ title: "", description: "", startTime: "", endTime: "" }); // Reset form
             setErrors({});
         } catch (error: any) {
-            toast.error("Failed to create election. Please try again.");
+            toast.error("Failed to create election. Please try again." , {
+                style: {
+                    backgroundColor:"black",
+                    fontFamily: "kanit",
+                    color: "white"
+                }
+            });
             console.error("Error:", error);
             setLoading(false)
         }
     };
 
+    const handleCancel = ()=>{
+        toggleState()
+    }
+
     return (
-        <section className="flex justify-center items-center fixed h-screen inset-0 z-50 w-full bg-gray-100">
+        <section className="flex justify-center items-center fixed h-screen inset-0 z-50 w-full bg-white">
             <Toaster position="top-right" />
-            <div className="w-[90%] max-w-lg bg-white p-6 rounded-lg shadow-lg">
+            <div className="w-[90%] max-w-lg bg-white p-6">
                 <h2 className="text-2xl font-bold text-center mb-4 font-kanit">Create Election</h2>
                 <form onSubmit={handleSubmit} className="space-y-4">
                     {/* Title */}
@@ -83,7 +101,7 @@ export default function ElectionForm() {
                             placeholder="Election Title"
                             className="font-kanit"
                         />
-                        {errors.title && <p className="text-red-500 text-sm">{errors.title}</p>}
+                        {errors.title && <p className="text-red-500 text-sm font-kanit">{errors.title}</p>}
                     </div>
 
                     {/* Description */}
@@ -127,13 +145,17 @@ export default function ElectionForm() {
                         />
                         {errors.endTime && <p className="text-red-500 text-sm font-kanit">{errors.endTime}</p>}
                     </div>
+                    <div className="flex justify-between items-center gap-5">
+                        <Button className="w-full bg-black text-white font-kanit" onClick={handleCancel}>
+                            Cancel
+                        </Button>
+                        <Button type="submit" className="w-full bg-black text-white font-kanit">
+                            {
+                                loading ? (<Spinner/>) : " Create Election"
+                            }
 
-                    <Button type="submit" className="w-full bg-bluerry text-white fontt-kanit">
-                        {
-                            loading ? (<Spinner/>) : " Create Election"
-                        }
-
-                    </Button>
+                        </Button>
+                    </div>
                 </form>
             </div>
         </section>

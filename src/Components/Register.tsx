@@ -48,10 +48,8 @@ const Register:React.FunctionComponent = ()=>{
          }else{
              setLoading(true);
               const response = await axios.post("http://localhost:6060/auth/register" , formData,{ withCredentials: true }) //insert backend url here
-              console.log(response.data);
             if(response.data.states){
                setDisplay(true);
-               console.log(response.data)
                setLoading(false);
                  //toast.error(response.data.state)
                  //setLoading(false);

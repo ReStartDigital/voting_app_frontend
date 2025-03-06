@@ -10,10 +10,6 @@ const Security = () => {
   return (
     <section className='w-full h-full'>
         <section className='w-full h-full flex flex-col justify-center items-center gap-5'>
-            <div className='w-full h-15vh flex flex-col justify-center items-center'>
-                <span className='text-4xl font-bold text-bluerry font-font-kanit'>Security system</span>
-            </div>
-           
            <div className="w-full">
                <img src={Phoneimg} alt="Security" className='object-cover w-full h-[80%]'/>
            </div>
@@ -23,7 +19,7 @@ const Security = () => {
        </div>
        <section className='flex flex-col justify-center items-center px-3'>
            <div className='w-[70%] flex justify-center items-center'>
-              <span className='font-kanit text-need text-center text-2xl'>In today's digital age, making informed decisions can be a daunting task. 
+              <span className='font-kanit text-need text-center text-xl'>In today's digital age, making informed decisions can be a daunting task.
               With the rise of cyber threats and data breaches, 
               it's essential to ensure that your decision-making process is secure and protected.</span>
            </div>           
@@ -31,7 +27,7 @@ const Security = () => {
         <div className='w-full mt-8 flex justify-center items-center'>
                <div className="w-[80%] flex justify-center items-center p-4 gap-4">
                 <img src={security} alt="secuirty-image" className='object-cover object-center h-96'/>
-                <span className='font-kanit text-need text-center text-2xl'>At eVote Restart, we understand the importance of security and confidentiality. That's why we offer a service that allows individuals to make decisions in a 100% secure environment.</span>
+                <span className='font-kanit text-need text-center text-xl'>At eVote Restart, we understand the importance of security and confidentiality. That's why we offer a service that allows individuals to make decisions in a 100% secure environment.</span>
                </div> 
         </div>
        <section className='w-full h-full flex flex-col justify-center items-center'>
