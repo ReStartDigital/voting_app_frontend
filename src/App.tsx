@@ -13,6 +13,7 @@ import Dashboard from './AuthComponents/Dashboard';
 import { useLocation } from 'react-router-dom';
 import Protect from './Reusable/Protect';
 import AfterLogin from './Components/AfterLogin';
+import CheckAdminAccess from "./Reusable/CheckAdminAccess";
 
  const RenderHeader = ()=>{
     const navigate = useLocation();
@@ -38,11 +39,12 @@ const App:React.FunctionComponent = ()=>{
               <Route path='/security' element={<Security/>}/>
               <Route path='/change/password/user/vote-app/reset-password' element={<ChangePassword/>}/>
               <Route path='/admin/dashboard/election' element={
-                <Protect children={<Dashboard/>}/>
+                <CheckAdminAccess children={<Dashboard/>}/>
                 }/>
                 <Route path='/user/default/page' element={
                   <Protect children={<AfterLogin/>}/>
                   }/>
+
           </Routes>
       </Router>
   );

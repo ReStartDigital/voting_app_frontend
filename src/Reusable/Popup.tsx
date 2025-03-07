@@ -1,7 +1,7 @@
 import React , { useState , useEffect } from "react";
 import { Dialog } from "@headlessui/react";
 import { X } from "lucide-react";
-import {toast , Toaster } from "react-hot-toast";
+import {Spinner} from "flowbite-react";
 
 
 interface PopupProps {
@@ -10,8 +10,8 @@ interface PopupProps {
 }
 
 
-export default function Popup({ status , setShow , updatedUser}: { status: boolean ,  setShow: (value: boolean) => void
-    , updatedUser: () => void}) {
+export default function Popup({ status , setShow , updatedUser , loading }: { status: boolean ,  setShow: (value: boolean) => void
+    , updatedUser: () => Promise<void> , loading: boolean}) {
     const [isOpen, setIsOpen] = useState(status);
 
     useEffect(() => {
@@ -40,7 +40,10 @@ export default function Popup({ status , setShow , updatedUser}: { status: boole
                     className="px-4 py-2 bg-black text-white font-kanit rounded-lg hover:bg-gray-400"
                     onClick={updatedUser}
                 >
-                    Yes
+                    {
+                        loading ? (<Spinner/>) : "Yes"
+                    }
+
                 </button>
             <button
                 onClick={() => setIsOpen(false)}

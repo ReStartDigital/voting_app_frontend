@@ -1,14 +1,23 @@
-import { useState } from "react";
+import { useState , useEffect } from "react";
 import {Label, TextInput, Textarea, Button, Spinner} from "flowbite-react";
 import axios from "axios";
 import {toast, Toaster} from "react-hot-toast";
 import Usestore from "../store/UseStore";
 
+export interface ElectionForm {
+    adminId?: string | null;
+    title: string;
+    description: string;
+    startTime: string;
+    endTime: string;
+}
+
 export default function ElectionForm() {
     const [ loading , setLoading ] = useState<boolean>(false);
     const { initial , toggleState } = Usestore();
     // State to manage form fields
-    const [formData, setFormData] = useState({
+    const [formData, setFormData] = useState<ElectionForm>({
+        adminId: "",
         title: "",
         description: "",
         startTime: "",
@@ -18,7 +27,13 @@ export default function ElectionForm() {
     // State for validation errors
     const [errors, setErrors] = useState<{ [key: string]: string }>({});
 
-    const electionId = sessionStorage.getItem("userId") || "";
+
+    useEffect(() => {
+        const userId = sessionStorage.getItem("user_id") || "";
+        setFormData((prev) => ({ ...prev, adminId: userId }));
+    }, []);
+
+    const electionId = sessionStorage.getItem("user_id") || "";
 
     // Handle input change
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -39,19 +54,35 @@ export default function ElectionForm() {
     // Handle form submission
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+        const userId = sessionStorage.getItem("user_id");
+        const token = sessionStorage.getItem("token")
+
+        if(!token) {
+            toast.error("Token is required");
+            return;
+        }
 
         if (!validateForm()) return;
 
+        const electionData = {
+            ...formData,
+            adminId: userId || formData.adminId,
+            startTime: new Date(formData.startTime).toISOString().slice(0, 19), // ✅ Ensure correct format
+            endTime: new Date(formData.endTime).toISOString().slice(0, 19)      // ✅ Ensure correct format
+        };
+
+        console.log(electionData)
         try {
-            console.log("Election Data:", { adminId: electionId, ...formData });
+
             setLoading(true);
+            console.log(electionData);
             const response = await axios.post(
                 "http://localhost:6060/protected/router/admin/add/election",
-                { adminId: electionId, ...formData },
+                electionData,
                 {
                     withCredentials: true,
                     headers: {
-                        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+                        Authorization: `Bearer ${token}`,
                     },
                 }
             );
@@ -63,6 +94,8 @@ export default function ElectionForm() {
                     color: "white"
                 }
             });
+            sessionStorage.setItem("election", response.data.id)
+            console.log(electionData);
             setLoading(false);
             console.log("Response:", response.data);
             setFormData({ title: "", description: "", startTime: "", endTime: "" }); // Reset form
@@ -75,7 +108,7 @@ export default function ElectionForm() {
                     color: "white"
                 }
             });
-            console.error("Error:", error);
+            console.log("Error:", error);
             setLoading(false)
         }
     };
@@ -83,6 +116,8 @@ export default function ElectionForm() {
     const handleCancel = ()=>{
         toggleState()
     }
+
+
 
     return (
         <section className="flex justify-center items-center fixed h-screen inset-0 z-50 w-full bg-white">
@@ -127,6 +162,7 @@ export default function ElectionForm() {
                             type="datetime-local"
                             value={formData.startTime}
                             onChange={handleChange}
+                            step="1"
                             className="font-kanit"
                         />
                         {errors.startTime && <p className="text-red-500 text-sm font-kanit">{errors.startTime}</p>}
@@ -141,6 +177,7 @@ export default function ElectionForm() {
                             type="datetime-local"
                             value={formData.endTime}
                             onChange={handleChange}
+                            step="1"
                             className="font-kanit"
                         />
                         {errors.endTime && <p className="text-red-500 text-sm font-kanit">{errors.endTime}</p>}
