@@ -97,7 +97,7 @@ export default function ElectionForm() {
             sessionStorage.setItem("election", response.data.id)
             console.log(electionData);
             setLoading(false);
-            console.log("Response:", response.data);
+            toggleState();
             setFormData({ title: "", description: "", startTime: "", endTime: "" }); // Reset form
             setErrors({});
         } catch (error: any) {

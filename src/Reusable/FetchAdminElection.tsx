@@ -1,5 +1,7 @@
-import React, {ReactEventHandler, useEffect} from "react";
+import React, {useEffect} from "react";
 import CandidateForm from "./CandidateForm";
+import axios from "axios";
+import { toast , Toaster } from "react-hot-toast";
 
 export interface Props {
     title: string;
@@ -10,8 +12,8 @@ export interface Props {
 
 const FetchAdminElection: React.FunctionComponent<Props> = ({ title , startTime , endTime , id})=>{
     const [ display , setDisplay ] = React.useState(false);
-
-
+    const [ loading , setLoading ] = React.useState(false);
+    const token = sessionStorage.getItem("token");
     const handleClick = (event: any)=>{
         console.log(id)
         setDisplay(true);
@@ -28,17 +30,45 @@ const FetchAdminElection: React.FunctionComponent<Props> = ({ title , startTime 
     }, []);
 
 
-    const handleSubmit = (formData: FormData)=>{
+    const handleSubmit = async(formData: FormData)=>{
         console.log(formData);
+        try{
+            console.log(user_id);
+            console.log(id);
+            const response = await axios.post(`http://localhost:6060/protected/router/save/candidate/detail/${user_id}/${id}` , formData , {
+                withCredentials: true,
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    "Content-Type": "multipart/form-data"
+                }
+            })
+            console.log(response.data)
+
+            toast.success("Updated successfully", {
+                style:{
+                    fontFamily: "kanit",
+                    backgroundColor: "black",
+                    color: "white"
+                }
+            });
+        }catch(error: any){
+            console.log(error)
+        }
+    }
+
+    const handleUpdated = ()=>{
+        setLoading(false);
     }
 
     const user_id = sessionStorage.getItem("user_id");
 
     return(
-        <div className="w-full h-[15%] border-2 border-gray-200 flex justify-between hover:cursor-pointer items-start p-4" onClick={handleClick}>
+        <div className="w-full h-[25%] border-2 border-gray-200 flex justify-between hover:cursor-pointer items-start p-4" onClick={handleClick}>
+            <Toaster position={"top-right"}/>
             <div className='flex justify-start items-start flex-col'>
                 <span className='font-kanit uppercase'>Title</span>
                 <span className='font-kanit'>{title}</span>
+                <span className='font-kanit'>Waiting...</span>
             </div>
             <div className='flex justify-start items-start flex-col'>
                 <span className='font-kanit uppercase flex'>
@@ -99,7 +129,7 @@ const FetchAdminElection: React.FunctionComponent<Props> = ({ title , startTime 
                             ✖
                         </button>
                         <CandidateForm users={[{ id: user_id, name: "User" }]} elections={[{ id, title }]}
-                                       onSubmit={handleSubmit}  Cancel={handleCancel}/>
+                                       onSubmit={handleSubmit}  Cancel={handleCancel} state={handleUpdated}/>
                     </div>
                 </div>
             }

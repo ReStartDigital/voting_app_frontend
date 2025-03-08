@@ -4,7 +4,7 @@ import Popup from "../Reusable/Popup";
 import axios from "axios";
 import { toast, Toaster } from "react-hot-toast";
 const pic1 = require("../assets/videos/mockup.mp4");
-const pic2 = require("../assets/images/Frame30.png");
+const pic2 = require("../assets/videos/macbook.mp4");
 const pic3 = require("../assets/images/Frame31.png");
 const pic4 = require("../assets/images/Frame32.png");
 const pic5 = require("../assets/images/security.png");
@@ -163,7 +163,7 @@ const AfterLogin: React.FC = () => {
 
                 <div className="w-full bg-gradient-to-t from-darkerblue to-darkenblue py-12">
                     <div className="w-full flex justify-center items-center">
-                        <span className="uppercase font-kanit text-white text-xl sm:text-2xl md:text-3xl lg:text-4xl">How It Works</span>
+                        <span className="uppercase font-kanit text-blueblue text-xl sm:text-2xl md:text-3xl lg:text-4xl">How It Works</span>
                     </div>
                     <div className="w-full flex justify-center items-center my-8">
                         <span className="capitalize font-kanit text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl">
@@ -202,6 +202,26 @@ const AfterLogin: React.FC = () => {
                             </div>
                         </div>
                     </div>
+                </div>
+                <div className="w-full flex justify-between items-center 2xl:flex-row xl:flex-row lg:flex-row md:flex-col sm:flex-col xs:flex-col xx:flex-col">
+                    <Fade direction="up" triggerOnce className="w-full md:w-[69%]">
+                        <div className="flex flex-col text-center md:text-left">
+                            <span className="font-kanit text-3xl sm:text-4xl md:text-5xl">
+                                Best Desktop Experience
+                            </span>
+                            <br />
+                            <span className="font-kanit text-base sm:text-lg md:text-xl leading-relaxed">
+                                Viewing the website on a desktop is seamless, with well-structured layouts, crisp images, and easy navigation.
+                                The responsive design ensures readability, while smooth animations enhance engagement.
+                                Larger screens provide a more immersive experience, making content consumption and interactions effortless and visually appealing.
+                            </span>
+                        </div>
+                    </Fade>
+                    <Fade direction="up" triggerOnce className="w-full h-full">
+                        <div className="w-full h-full sm:h-[400px] lg:h-[500px]  rounded-lg">
+                            <video src={pic2} muted autoPlay loop className="w-full h-full object-contain" />
+                        </div>
+                    </Fade>
                 </div>
                 <div className="w-full flex flex-col justify-center items-center py-12 bg-gray-100">
                     <div className="w-full flex justify-center items-center">
