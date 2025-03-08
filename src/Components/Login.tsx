@@ -35,7 +35,6 @@ const Login: React.FC = () => {
         setLoading(true);
         e.preventDefault();
         const response = await axios.post("http://localhost:6060/auth/login", formData , { withCredentials: true })
-        console.log(response.data);
         if(response.data.token && response.data.userId){
           sessionStorage.setItem("token", response.data.token);
           sessionStorage.setItem("user_id", response.data.userId);
@@ -50,7 +49,6 @@ const Login: React.FC = () => {
       catch(error: any){
         setLogMessage(error.response?.data?.password || error.response?.data?.message);
         setLoading(false);
-        console.error(error);
       }
         
     }

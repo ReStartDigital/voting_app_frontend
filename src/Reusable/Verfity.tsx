@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from "axios";
-import Spinner from './Spinner';
+import { Spinner } from 'flowbite-react';
+
 
 
 interface Option {
@@ -58,18 +59,20 @@ const Verify: React.FC<Option> = ({ handleVer , email}) => {
     }
     try{
         const response = await axios.post(`http://localhost:6060/auth/verify-otp?email=${email}&valid=${valid.verify}`,{ withCredentials: true})
-        if(response.data){
+        if(response.data.states === false){
            console.log(response.data)
-          handleVer(false);
-           window.location.href = "/login/user";
+           setError(response.data.message);
+          handleVer(true);
+           
         }else{
           console.log("staging" + response.data)
           setTimeout(()=>{
-            setError("Invalid code");
+            setError(response.data.message);
           },300)
           setstatus(false)
           setError("")
-          handleVer(true);
+          window.location.href = "/login/user";
+          handleVer(false);
         }
         
     }catch(err: any){
