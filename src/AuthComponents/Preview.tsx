@@ -45,7 +45,7 @@ const Preview = () => {
                 {data.length > 0 ? (
                     data.map((item: any, index: number) => (
                         <div key={index} className="bg-gray-100 h-[50%] rounded-lg shadow-md">
-                           <Profile image={item.image} name={item.name} manifesto={item.manifesto} position={item.position}/>
+                           <Profile image={item.image} name={item.name} manifesto={item.manifesto} title={item.electionId.title} position={item.position}/>
                         </div>
                     ))
                 ) : (

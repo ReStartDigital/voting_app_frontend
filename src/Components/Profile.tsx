@@ -5,22 +5,25 @@ interface ProfileProps {
     name: string;
     manifesto: string;
     position: string;
-
+    title: string;
 }
 
-const Profile:React.FunctionComponent<ProfileProps> = ({ image , name , manifesto , position })=>{
-    return(
-        <div className='max-w-64  flex justify-center items-center flex-col'>
+const Profile: React.FC<ProfileProps> = ({ image, name, manifesto, position, title }) => {
+    const imageSrc = image.startsWith("data:image") ? image : `data:image/jpeg;base64,${image}`;
+
+    return (
+        <div className="w-72 p-5 bg-white shadow-lg rounded-2xl flex flex-col items-center text-center transition-transform duration-300 hover:scale-105">
             <img
-                src={`data:image/jpeg;base64,${image}`}
-                alt={name || "Candidate"}
-                className="w-full h-40 object-cover rounded-md"
+                src={imageSrc}
+                alt={name}
+                className="w-32 h-32 object-cover rounded-full border-4 border-gray-200 shadow-sm"
             />
-            <span className="font-kanit">{position}</span>
-            <h2 className="text-lg font-kanit mt-2">{name}</h2>
-            <p className="text-gray-600 font-kanit">{manifesto}</p>
+            <h2 className="text-xl font-kanit mt-4 text-gray-800">{name}</h2>
+            <span className="text-sm font-kanit text-gray-600">Title: {title}</span>
+            <span className="text-sm text-gray-500 font-kanit">{position}</span>
+            <p className="text-sm text-gray-700 mt-3 px-3 italic font-kanit">{manifesto}</p>
         </div>
-    )
-}
+    );
+};
 
 export default Profile;
