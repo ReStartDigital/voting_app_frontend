@@ -1,63 +1,54 @@
-import React , { useState }  from 'react';
+import React, { useState } from 'react';
 import axios from "axios";
-
+import { Spinner } from "flowbite-react";
+import useTextStore from "../store/useTextStore";
+import Logo from '../assets/images/logo.png';
 
 type User = {
-  email:string;
-  password:string;
-
+  email: string;
+  password: string;
 }
 
 const Login: React.FC = () => {
-<<<<<<< Updated upstream
-  
+  const { text, setLogMessage } = useTextStore();
+  const [loading, setLoading] = useState<boolean>(false);
+  const [formData, setFormData] = useState<User>({
+    email: "",
+    password: "",
+  });
 
-  return (
-    <section className="w-full h-80vh flex justify-center items-center flex-col">
-      <span>login</span>
-=======
-  const { text, setLogMessage } = ChangeState();
-  const [ loading , setLoading ] = useState<boolean>(false);
-    const [ formData , setFormData ] = useState<User>({
-        email:"",
-        password:"",
-    })
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value, name } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
 
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      setLoading(true);
+      const response = await axios.post(
+        "http://localhost:6060/auth/login",
+        formData,
+        { withCredentials: true }
+      );
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>)=>{
-      e.preventDefault();
-      const { value, name } = e.target;
-      setFormData({
-       ...formData,
-        [name] : value,
-      })
-
-  }
-
-    const handleSubmit = async(e: any)=>{
-      try{
-        setLoading(true);
-        e.preventDefault();
-        const response = await axios.post("http://localhost:6060/auth/login", formData , { withCredentials: true })
-        console.log(response.data);
-        if(response.data.token && response.data.userId){
-          sessionStorage.setItem("token", response.data.token);
-          sessionStorage.setItem("user_id", response.data.userId);
-          
-          setLoading(false);
-          window.location.href = "/user/default/page";
-        }else{
-          setLogMessage(response?.data?.password || response?.data?.message);
-          setLoading(false)
-        }
+      if (response.data.token && response.data.userId) {
+        sessionStorage.setItem("token", response.data.token);
+        sessionStorage.setItem("user_id", response.data.userId);
+        window.location.href = "/user/default/page";
+      } else {
+        setLogMessage(response?.data?.password || response?.data?.message);
       }
-      catch(error: any){
-        setLogMessage(error.response?.data?.password || error.response?.data?.message);
-        setLoading(false);
-        console.error(error);
-      }
-        
+    } catch (error: any) {
+      setLogMessage(error.response?.data?.password || error.response?.data?.message);
+      console.error(error);
+    } finally {
+      setLoading(false);
     }
+  };
 
   return (
     <section className="w-full min-h-screen bg-gradient-to-b from-white to-blue-50 flex items-center justify-center p-4">
@@ -81,7 +72,7 @@ const Login: React.FC = () => {
             <h1 className="text-3xl font-kanit font-bold text-bluerry mb-6">
               Login to Your Account
             </h1>
-            <form className="space-y-6">
+            <form className="space-y-6" onSubmit={handleSubmit}>
               <div>
                 <label className="block text-sm font-kanit text-gray-700 mb-2">
                   Email Address
@@ -120,7 +111,6 @@ const Login: React.FC = () => {
 
               <button
                 type="submit"
-                onClick={handleSubmit}
                 disabled={loading}
                 className="w-full bg-bluerry text-white font-kanit font-bold p-3 rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50"
               >
@@ -137,10 +127,6 @@ const Login: React.FC = () => {
           </div>
         </div>
       </div>
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
     </section>
   );
 };

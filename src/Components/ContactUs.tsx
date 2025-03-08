@@ -1,6 +1,27 @@
 import React, { useState } from "react";
 import { FaMapMarkerAlt, FaPhone, FaEnvelope } from "react-icons/fa";
 
+// For mixed icon types
+interface ContactIcon {
+  icon: React.ComponentType<React.SVGProps<SVGSVGElement>> | string;
+  label: string;
+}
+
+// SVG icon component
+const MapPin: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
+  <svg {...props}>{/* ... */}</svg>
+);
+
+// FontAwesome icon with explicit typing
+const PhoneIcon: React.FC<React.SVGProps<SVGSVGElement>> = FaPhone;
+
+// Using different icon types
+const contactMethods: ContactIcon[] = [
+  { icon: MapPin, label: "Address" },
+  { icon: PhoneIcon, label: "Phone" },
+  { icon: "📧", label: "Email" } // Emoji fallback
+];
+
 const ContactUs: React.FC = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -24,11 +45,6 @@ const ContactUs: React.FC = () => {
     console.log("Form submitted:", formData);
   };
 
-  // Store icons in variables to ensure proper typing
-  const MapIcon = FaMapMarkerAlt;
-  const PhoneIcon = FaPhone;
-  const EnvelopeIcon = FaEnvelope;
-
   return (
     <section className="w-full min-h-screen bg-gradient-to-b from-white to-blue-50 py-16">
       <div className="container mx-auto px-4 max-w-6xl">
@@ -49,49 +65,31 @@ const ContactUs: React.FC = () => {
               Get in Touch
             </h2>
             <div className="space-y-6">
-              <div className="flex items-start">
-                <div className="p-3 bg-bluerry rounded-full text-white mr-4">
-                  <MapIcon className="text-xl" />
+              {contactMethods.map((method, index) => (
+                <div key={index} className="flex items-start">
+                  <div className="p-3 bg-bluerry rounded-full text-white mr-4">
+                    {typeof method.icon === "string" ? (
+                      <span>{method.icon}</span>
+                    ) : (
+                      <method.icon className="text-xl" />
+                    )}
+                  </div>
+                  <div>
+                    <h3 className="font-kanit font-semibold text-lg">
+                      {method.label}
+                    </h3>
+                    <p className="text-gray-600 font-kanit">
+                      {method.label === "Address" ? (
+                        "123 eVote Street, Tech City, TC 12345"
+                      ) : method.label === "Phone" ? (
+                        "+1 (234) 567-8900 Mon - Fri, 9:00 AM - 5:00 PM"
+                      ) : (
+                        "support@evoterestart.com We respond within 24 hours"
+                      )}
+                    </p>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="font-kanit font-semibold text-lg">
-                    Our Office
-                  </h3>
-                  <p className="text-gray-600 font-kanit">
-                    123 eVote Street,
-                    <br />
-                    Tech City, TC 12345
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-start">
-                <div className="p-3 bg-bluerry rounded-full text-white mr-4">
-                  <PhoneIcon className="text-xl" />
-                </div>
-                <div>
-                  <h3 className="font-kanit font-semibold text-lg">Phone</h3>
-                  <p className="text-gray-600 font-kanit">
-                    +1 (234) 567-8900
-                    <br />
-                    Mon - Fri, 9:00 AM - 5:00 PM
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-start">
-                <div className="p-3 bg-bluerry rounded-full text-white mr-4">
-                  <EnvelopeIcon className="text-xl" />
-                </div>
-                <div>
-                  <h3 className="font-kanit font-semibold text-lg">Email</h3>
-                  <p className="text-gray-600 font-kanit">
-                    support@evoterestart.com
-                    <br />
-                    We respond within 24 hours
-                  </p>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
 

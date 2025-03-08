@@ -1,11 +1,11 @@
 import React from "react";
 import {
-  FaShieldAlt,
-  FaLock,
-  FaServer,
-  FaUserCheck,
-  FaClipboardCheck,
-} from "react-icons/fa";
+  ShieldCheckIcon,
+  LockClosedIcon,
+  UserCircleIcon,
+  ServerIcon,
+  ClipboardDocumentCheckIcon,
+} from "@heroicons/react/24/outline";
 const photo = require("../assets/images/Frame65.png");
 const security = require("../assets/images/Frame64.png");
 
@@ -15,44 +15,36 @@ interface Feature {
   description: string;
 }
 
-// Store icons in variables with proper typing
-const ShieldIcon = FaShieldAlt;
-const LockIcon = FaLock;
-const UserCheckIcon = FaUserCheck;
-const ServerIcon = FaServer;
-const ClipboardIcon = FaClipboardCheck;
+const features: Feature[] = [
+  {
+    icon: ShieldCheckIcon,
+    title: "End-to-End Encryption",
+    description: "Your data is scrambled and unreadable to anyone except you",
+  },
+  {
+    icon: LockClosedIcon,
+    title: "Secure Servers",
+    description:
+      "Housed in facilities with robust physical and digital security",
+  },
+  {
+    icon: UserCircleIcon,
+    title: "Two-Factor Auth",
+    description: "Ensures only authorized individuals can access your account",
+  },
+  {
+    icon: ServerIcon,
+    title: "Regular Audits",
+    description: "Continuous security checks to identify vulnerabilities",
+  },
+  {
+    icon: ClipboardDocumentCheckIcon,
+    title: "Compliance",
+    description: "Meets all industry security standards and regulations",
+  },
+];
 
 const Security = () => {
-  const features: Feature[] = [
-    {
-      icon: ShieldIcon,
-      title: "End-to-End Encryption",
-      description: "Your data is scrambled and unreadable to anyone except you",
-    },
-    {
-      icon: LockIcon,
-      title: "Secure Servers",
-      description:
-        "Housed in facilities with robust physical and digital security",
-    },
-    {
-      icon: UserCheckIcon,
-      title: "Two-Factor Auth",
-      description:
-        "Ensures only authorized individuals can access your account",
-    },
-    {
-      icon: ServerIcon,
-      title: "Regular Audits",
-      description: "Continuous security checks to identify vulnerabilities",
-    },
-    {
-      icon: ClipboardIcon,
-      title: "Compliance",
-      description: "Meets all industry security standards and regulations",
-    },
-  ];
-
   return (
     <section className="w-full min-h-screen bg-gradient-to-b from-white to-blue-50 py-16">
       <div className="container mx-auto px-4">
