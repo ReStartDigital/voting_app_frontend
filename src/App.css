@@ -3,26 +3,7 @@
 }
 ::-webkit-scrollbar {
     display: none;
-<<<<<<< Updated upstream
-=======
 }
-
-/* Add this to your global CSS file */
-@keyframes slideDown {
-    0% {
-        transform: translateY(-20px);
-        opacity: 0;
-    }
-    100% {
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
-
-.animate-slideDown {
-    animation: slideDown 0.3s ease-out;
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
+.background-div {
+    background-image: url("")
 }

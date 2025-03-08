@@ -7,7 +7,7 @@ import Login from "./Components/Login";
 import Register from "./Components/Register";
 import Election from './Components/election';
 import Forgotpassword from './Reusable/ForgotPassword';
-// import Security from './Components/Security';
+import Security from './Components/Security';
 import ChangePassword from './Reusable/ChangePassword';
 import Dashboard from './AuthComponents/Dashboard';
 import { useLocation } from 'react-router-dom';
@@ -40,7 +40,7 @@ const App:React.FunctionComponent = ()=>{
               <Route path="/register/user" element={<Register/>}/> 
               <Route path="/election" element={<Election/>} /> 
               <Route path="/forgot-password" element={<Forgotpassword/>} />
-              {/* <Route path='/security' element={<Security/>}/> */}
+              <Route path='/security' element={<Security/>}/>
               <Route path='/change/password/user/vote-app/reset-password' element={<ChangePassword/>}/>
               <Route path='/admin/dashboard/election' element={
                 <Protect children={<Dashboard/>}/>

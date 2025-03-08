@@ -1,18 +1,5 @@
 import React from "react";
-import { FaShieldAlt } from "react-icons/fa";
 const Details = require("../assets/images/detail.png");
-
-// For simple emoji/icons
-interface FeatureBadge {
-  icon: string | React.ComponentType;
-  text: string;
-}
-
-const features: FeatureBadge[] = [
-  { icon: "🔒", text: "Secure Voting" },
-  { icon: "⚡", text: "Fast Results" },
-  { icon: FaShieldAlt, text: "Encrypted" }, // React icon component
-];
 
 const Home: React.FC = () => {
   return (

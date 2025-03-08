@@ -1,7 +1,7 @@
 import React from "react";
-const pic1 = require("../assets/images/Frame75.png");
-const pic2 = require("../assets/images/Frame77.png");
-const pic3 = require("../assets/images/Frame81.png");
+const pic1 = require("../assets/images/Frame32.png");
+const pic2 = require("../assets/images/Frame65.png");
+// const pic3 = require("../assets/images/Frame81.png");
 const pic4 = require("../assets/images/Frame83.png");
 const pic5 = require("../assets/images/Frame84.png");
 const pic6 = require("../assets/images/Frame85.png");
@@ -133,7 +133,7 @@ const Election: React.FC = () => {
                             "eBallot transformed our election process, making it more efficient and accessible for all students."
                         </p>
                         <div className="flex items-center space-x-4">
-                            <img src={pic3} alt="Testimonial" className="w-12 h-12 rounded-full object-cover" />
+                            <img src={pic4} alt="Testimonial" className="w-12 h-12 rounded-full object-cover" />
                             <div>
                                 <h4 className="font-kanit font-semibold">John Doe</h4>
                                 <p className="text-gray-500 font-kanit">School Administrator</p>
@@ -145,7 +145,7 @@ const Election: React.FC = () => {
                             "The security features gave us peace of mind, and the real-time results were a game-changer."
                         </p>
                         <div className="flex items-center space-x-4">
-                            <img src={pic3} alt="Testimonial" className="w-12 h-12 rounded-full object-cover" />
+                            <img src={pic4} alt="Testimonial" className="w-12 h-12 rounded-full object-cover" />
                             <div>
                                 <h4 className="font-kanit font-semibold">Jane Smith</h4>
                                 <p className="text-gray-500 font-kanit">Student Council President</p>
@@ -155,21 +155,25 @@ const Election: React.FC = () => {
                 </div>
             </div>
 
-            {/* Call to Action Section */}
-            <div className="bg-gradient-to-r from-bluerry to-gray-100 py-16">
-                <div className="container mx-auto px-6">
-                    <h2 className="text-4xl font-bold font-kanit text-white text-center mb-12">
-                        Get Started with eBallot Today
-                    </h2>
-                    <div className="flex justify-center">
-                        <button className="bg-white text-bluerry px-8 py-3 rounded-lg font-kanit font-semibold hover:bg-gray-200 transition-colors">
-                            Contact Us
-                        </button>
-                    </div>
-                </div>
-            </div>
+      
+      {/* Call to Action Section */}
+      <div className="bg-gradient-to-r from-bluerry to-blue-500 py-16">
+        <div className="container mx-auto px-6 text-center">
+          <h2 className="text-3xl font-bold font-kanit text-white mb-4">
+            Ready to Revolutionize Your Elections?
+          </h2>
+          <p className="text-lg text-white font-kanit mb-8">
+            Experience the power of eBallot for yourself. Get started today and
+            discover a more efficient, secure, and accessible way to conduct
+            elections.
+          </p>
+          <button className="bg-white text-bluerry px-8 py-3 rounded-lg font-kanit font-semibold hover:bg-gray-200 transition-colors">
+            Get Started
+          </button>
         </div>
-    );
+      </div>
+    </div>
+  );
 };
 
 export default Election;
