@@ -7,7 +7,6 @@ import {
   FaClipboardCheck,
 } from "react-icons/fa";
 const photo = require("../assets/images/Frame65.png");
-const Phoneimg = require("../assets/images/Frame63.png");
 const security = require("../assets/images/Frame64.png");
 
 interface Feature {
@@ -16,32 +15,39 @@ interface Feature {
   description: string;
 }
 
+// Store icons in variables with proper typing
+const ShieldIcon = FaShieldAlt;
+const LockIcon = FaLock;
+const UserCheckIcon = FaUserCheck;
+const ServerIcon = FaServer;
+const ClipboardIcon = FaClipboardCheck;
+
 const Security = () => {
   const features: Feature[] = [
     {
-      icon: FaShieldAlt,
+      icon: ShieldIcon,
       title: "End-to-End Encryption",
       description: "Your data is scrambled and unreadable to anyone except you",
     },
     {
-      icon: FaLock,
+      icon: LockIcon,
       title: "Secure Servers",
       description:
         "Housed in facilities with robust physical and digital security",
     },
     {
-      icon: FaUserCheck,
+      icon: UserCheckIcon,
       title: "Two-Factor Auth",
       description:
         "Ensures only authorized individuals can access your account",
     },
     {
-      icon: FaServer,
+      icon: ServerIcon,
       title: "Regular Audits",
       description: "Continuous security checks to identify vulnerabilities",
     },
     {
-      icon: FaClipboardCheck,
+      icon: ClipboardIcon,
       title: "Compliance",
       description: "Meets all industry security standards and regulations",
     },
@@ -92,7 +98,7 @@ const Security = () => {
             <div>
               <img
                 src={security}
-                alt="Security"
+                alt="Security diagram"
                 className="w-full h-auto rounded-lg"
               />
             </div>
@@ -149,7 +155,7 @@ const Security = () => {
             <div>
               <img
                 src={photo}
-                alt="Security"
+                alt="Security illustration"
                 className="w-full h-auto rounded-lg"
               />
             </div>
