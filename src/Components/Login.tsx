@@ -84,7 +84,7 @@ const Login: React.FC = () => {
                   onChange={handleChange}
                   className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-bluerry/50 focus:border-bluerry transition-all"
                   type="email"
-                  placeholder="you@example.com"
+                  placeholder="restartdigital@gmail.com"
                   required
                 />
               </div>

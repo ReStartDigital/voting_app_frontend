@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 const Details = require("../assets/images/detail.png");
 
 const Home: React.FC = () => {
@@ -78,12 +79,12 @@ const Home: React.FC = () => {
             </div>
           </div>
           <div className="flex space-x-4">
-            <button className="bg-bluerry text-white px-8 py-3 rounded-lg font-kanit hover:bg-blue-700 transition duration-300">
+            <Link to="/register/user" className="bg-bluerry text-white px-8 py-3 rounded-lg font-kanit hover:bg-blue-700 transition duration-300">
               Get Started
-            </button>
-            <button className="border border-bluerry text-bluerry px-8 py-3 rounded-lg font-kanit hover:bg-bluerry hover:text-white transition duration-300">
+            </Link>
+            <Link to="/election" className="border border-bluerry text-bluerry px-8 py-3 rounded-lg font-kanit hover:bg-bluerry hover:text-white transition duration-300">
               Learn More
-            </button>
+            </Link>
           </div>
         </div>
 

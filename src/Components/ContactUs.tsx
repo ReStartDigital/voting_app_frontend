@@ -33,7 +33,7 @@ const ContactUs: React.FC = () => {
     {
       icon: EnvelopeIcon,
       label: "Email Support",
-      value: "support@evoterestart.com",
+      value: "support.restartdigital@gmail.com",
       sub: "Response within 24 hours",
       color: "bg-purple-100",
     },
@@ -133,7 +133,7 @@ const ContactUs: React.FC = () => {
                     value={formData.name}
                     onChange={handleChange}
                     className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-bluerry/50 focus:border-bluerry transition-all"
-                    placeholder="John Doe"
+                    placeholder="Kwame Boakye"
                     required
                   />
                 </div>
@@ -148,7 +148,7 @@ const ContactUs: React.FC = () => {
                     value={formData.email}
                     onChange={handleChange}
                     className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-bluerry/50 focus:border-bluerry transition-all"
-                    placeholder="john@example.com"
+                    placeholder="restartdigital@gmail.com"
                     required
                   />
                 </div>

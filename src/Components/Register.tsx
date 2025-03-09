@@ -3,7 +3,9 @@ import axios from "axios";
 import { toast, Toaster } from "react-hot-toast";
 import Verify from "../Reusable/Verfity";
 import { Spinner } from "flowbite-react";
+import { CheckCircleIcon } from "@heroicons/react/24/outline";
 const Logo = require("../assets/images/logo.png");
+
 
 export interface UserDetails {
   firstname: string;
@@ -88,148 +90,154 @@ const Register: React.FC = () => {
   };
 
   return (
-    <section className="w-full min-h-screen bg-gradient-to-b from-white to-blue-50 py-16">
-      <div className="container mx-auto px-4 max-w-4xl">
-        <Toaster position="bottom-right" />
-        {display && <Verify handleVer={handleVer} email={formData.email} />}
+    <section className="w-full min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50 flex items-center justify-center p-4">
+      <div className="w-full max-w-md bg-white rounded-2xl shadow-xl overflow-hidden">
+        <div className="p-8">
+          <div className="flex flex-col items-center mb-8">
+            <img
+              src={Logo}
+              alt="eVote Logo"
+              className="w-20 h-20 mb-4 object-contain"
+            />
+            <h1 className="text-3xl font-kanit font-bold text-bluerry">
+              Create Your Account
+            </h1>
+            <p className="text-gray-600 font-kanit mt-2">
+              Join our secure voting community
+            </p>
+          </div>
 
-        <div className="bg-white rounded-xl shadow-lg overflow-hidden">
-          <div className="grid grid-cols-1 md:grid-cols-2">
-            {/* Image Section */}
-            <div className="hidden md:block bg-bluerry p-8">
-              <div className="flex flex-col items-center justify-center h-full">
-                <img src={Logo} alt="logo" className="w-32 mb-6" />
-                <h2 className="text-3xl font-kanit font-bold text-white text-center">
-                  Join eVote Restart
-                </h2>
-                <p className="text-gray-200 font-kanit text-center mt-4">
-                  Secure, transparent, and accessible voting solutions
-                </p>
+          <form className="space-y-6">
+            <div className="grid grid-cols-1 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label className="block text-sm font-kanit text-bluerry mb-2">
+                    First Name
+                  </label>
+                  <input
+                    name="firstname"
+                    value={formData.firstname}
+                    onChange={handleChange}
+                    className="w-full p-3.5 border border-gray-200 rounded-xl focus:ring-2 focus:ring-bluerry/50 focus:border-bluerry transition-all"
+                    type="text"
+                    placeholder="Kwame"
+                    required
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-kanit text-bluerry mb-2">
+                    Last Name
+                  </label>
+                  <input
+                    name="lastname"
+                    value={formData.lastname}
+                    onChange={handleChange}
+                    className="w-full p-3.5 border border-gray-200 rounded-xl focus:ring-2 focus:ring-bluerry/50 focus:border-bluerry transition-all"
+                    type="text"
+                    placeholder="Boakye"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-sm font-kanit text-bluerry mb-2">
+                  Email Address
+                </label>
+                <input
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  className="w-full p-3.5 border border-gray-200 rounded-xl focus:ring-2 focus:ring-bluerry/50 focus:border-bluerry transition-all"
+                  type="email"
+                  placeholder="restartdigital@gmail.com"
+                  required
+                />
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label className="block text-sm font-kanit text-bluerry mb-2">
+                    Password
+                  </label>
+                  <input
+                    name="password"
+                    value={formData.password}
+                    onChange={handleChange}
+                    className="w-full p-3.5 border border-gray-200 rounded-xl focus:ring-2 focus:ring-bluerry/50 focus:border-bluerry transition-all"
+                    type="password"
+                    placeholder="••••••••"
+                    required
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-kanit text-bluerry mb-2">
+                    Confirm Password
+                  </label>
+                  <input
+                    name="confirmPassword"
+                    value={formData.confirmPassword}
+                    onChange={handleChange}
+                    className="w-full p-3.5 border border-gray-200 rounded-xl focus:ring-2 focus:ring-bluerry/50 focus:border-bluerry transition-all"
+                    type="password"
+                    placeholder="••••••••"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-sm font-kanit text-bluerry mb-2">
+                  Date of Birth
+                </label>
+                <input
+                  value={formData.dateOfBirth}
+                  className="w-full p-3.5 border border-gray-200 rounded-xl focus:ring-2 focus:ring-bluerry/50 focus:border-bluerry transition-all"
+                  type="date"
+                  name="dateOfBirth"
+                  onChange={handleChange}
+                  required
+                />
               </div>
             </div>
 
-            {/* Form Section */}
-            <div className="p-8">
-              <h1 className="text-3xl font-kanit font-bold text-bluerry mb-6">
-                Create Your Account
-              </h1>
-              <form className="space-y-4">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-sm font-kanit text-gray-700 mb-2">
-                      First Name
-                    </label>
-                    <input
-                      name="firstname"
-                      value={formData.firstname}
-                      onChange={handleChange}
-                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-bluerry focus:border-bluerry transition-all"
-                      type="text"
-                      placeholder="Enter your first name"
-                      required
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-kanit text-gray-700 mb-2">
-                      Last Name
-                    </label>
-                    <input
-                      name="lastname"
-                      value={formData.lastname}
-                      onChange={handleChange}
-                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-bluerry focus:border-bluerry transition-all"
-                      type="text"
-                      placeholder="Enter your last name"
-                      required
-                    />
-                  </div>
-                </div>
+            <button
+              type="submit"
+              disabled={loading || !state}
+              className={`w-full ${
+                state ? " hover:bg-blue-700" : "bg-bluerry"
+              } w-full bg-bluerry text-white font-kanit font-bold p-3 rounded-lg hover:bg-blue-700 transition-colors flex items-center justify-center gap-2`}
+              onClick={handleSubmit}
+            >
+              {loading ? (
+                <>
+                  <Spinner className="w-5 h-5" />
+                  <span>Creating Account...</span>
+                </>
+              ) : (
+                <>
+                  <CheckCircleIcon className="w-5 h-5" />
+                  <span>Create Account</span>
+                </>
+              )}
+            </button>
+          </form>
 
-                <div>
-                  <label className="block text-sm font-kanit text-gray-700 mb-2">
-                    Email Address
-                  </label>
-                  <input
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-bluerry focus:border-bluerry transition-all"
-                    type="email"
-                    placeholder="Enter your email"
-                    required
-                  />
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-sm font-kanit text-gray-700 mb-2">
-                      Password
-                    </label>
-                    <input
-                      name="password"
-                      value={formData.password}
-                      onChange={handleChange}
-                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-bluerry focus:border-bluerry transition-all"
-                      type="password"
-                      placeholder="Enter your password"
-                      required
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-kanit text-gray-700 mb-2">
-                      Confirm Password
-                    </label>
-                    <input
-                      name="confirmPassword"
-                      value={formData.confirmPassword}
-                      onChange={handleChange}
-                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-bluerry focus:border-bluerry transition-all"
-                      type="password"
-                      placeholder="Confirm your password"
-                      required
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-sm font-kanit text-gray-700 mb-2">
-                    Date of Birth
-                  </label>
-                  <input
-                    value={formData.dateOfBirth}
-                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-bluerry focus:border-bluerry transition-all"
-                    type="date"
-                    name="dateOfBirth"
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
-
-                <button
-                  type="submit"
-                  disabled={loading || !state}
-                  className={`w-full ${
-                    state ? "bg-bluerry hover:bg-blue-700" : "bg-gray-300"
-                  } text-white font-kanit font-bold p-3 rounded-lg transition-colors`}
-                  onClick={handleSubmit}
-                >
-                  {loading ? <Spinner /> : "Sign Up"}
-                </button>
-
-                <div className="text-center text-sm font-kanit text-gray-600">
-                  Already have an account?{" "}
-                  <a
-                    href="/login/user"
-                    className="text-bluerry hover:text-blue-600"
-                  >
-                    Log In
-                  </a>
-                </div>
-              </form>
-            </div>
+          <div className="mt-6 text-center text-sm font-kanit text-gray-600">
+            Already have an account?{" "}
+            <a
+              href="/login/user"
+              className="text-bluerry hover:text-blue-700 font-semibold transition-colors"
+            >
+              Log In
+            </a>
           </div>
         </div>
       </div>
+      <Toaster position="bottom-right" />
+      {display && <Verify handleVer={handleVer} email={formData.email} />}
     </section>
   );
 };
