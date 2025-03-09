@@ -1,65 +1,134 @@
-import React from 'react';
-import Preview from "../Reusable/Preview";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 const Logo = require("../assets/images/logo.png");
 
+const NAV_ITEMS = [
+  { name: "Election", path: "/election" },
+  { name: "Contact", path: "/contact-us" },
+  { name: "Security", path: "/security" },
+  { name: "Terms", path: "/terms" },
+];
 
+const Header: React.FC = () => {
+  const [isMenuOpen, setMenuOpen] = useState(false);
 
-const Header:React.FunctionComponent = ()=>{
-    const [ display , setDisplay ] = React.useState<boolean>(false);
+  const renderNavLink = (item: (typeof NAV_ITEMS)[0]) => (
+    <Link
+      key={item.name}
+      to={item.path}
+      className="text-bluerry font-kanit px-4 py-2 lg:hover:text-blue-700 transition-colors"
+      onClick={() => setMenuOpen(false)}
+    >
+      {item.name}
+    </Link>
+  );
 
-     const registerHandler = ()=>{
-        window.location.href="/register/user";
-     }
+  return (
+    <>
+      <header className="w-full h-20 bg-white border-b border-gray-100 fixed top-0 left-0 z-50 shadow-sm">
+        <div className="container mx-auto px-4 h-full flex items-center justify-between">
+          {/* Logo Section */}
+          <Link to="/" className="flex items-center gap-3 group">
+            <img src={Logo} alt="eVote Restart logo" className="h-12 w-auto" />
+            <span className="text-2xl font-kanit font-bold text-bluerry">
+              eVote Restart
+            </span>
+          </Link>
 
-     const loginHandler = ()=>{
-        window.location.href = "/login/user";
-     }
+          {/* Desktop Navigation */}
+          <nav className="hidden lg:flex items-center gap-8">
+            {NAV_ITEMS.map(renderNavLink)}
+          </nav>
 
-     const handleHome = ()=>{
-        window.location.href = "/";
-     }
-     const handleClick = ()=>{
-        setDisplay(!display);
-     }
+          {/* Desktop Auth Buttons */}
+          <div className="hidden lg:flex items-center gap-4">
+            <Link
+              to="/login/user"
+              className="px-6 py-2.5 font-kanit text-bluerry hover:bg-bluerry/10 rounded-lg transition-all"
+            >
+              Log in
+            </Link>
+            <Link
+              to="/register/user"
+              className="px-6 py-2.5 bg-bluerry text-white font-kanit rounded-lg hover:bg-blue-700 transition-colors"
+            >
+              Sign Up
+            </Link>
+          </div>
 
-    return (
-        <section className='w-full h-10vh bg-white flex 2xl:justify-center z-30 xl:justify-center lg:justify-between  md:justify-between xs:justify-between xx:justify-between items-center gap-5  p-1 overflow-x-hidden'>
-            <div className='w-full h-[10%] bg-inherit flex justify-center items-center fixed z-30 shadow-md shadow-gray-200'>
-                    <div className="w-full h-full flex justify-start items-center">
-                            <div className="2xl:w-[50%] xl:w-[40%] lg:w-[40%] md:w-[60%] sm:w-full xs:w-full xx:w-full h-full flex justify-start items-center">
-                                <img className='w-[] object-fill h-[90%] hover:cursor-pointer' onClick={handleHome} src={Logo} alt="logo-picture"/>
-                                <span className="font-bold w-full font-kanit text-2xl text-bluerry align- -ml-5 2xl:flex xl:flex lg:flex md:hidden sm:hidden xs:hidden xx:hidden">eVote Restart</span>
-                            </div> 
-                        <ul className='w-full h-full flex justify-start items-center 2xl:flex xl:flex lg:hidden md:hidden sm:hidden xs:hidden xx:hidden 2xl:p-4 xl:p-4 lg:p-3 md:p-3 sm:p-1 xs:p-0 xx:p-0'>
-                            <li><a href="/election" className='p-4 font-kanit text-fonts active:text-black hover:underline 2xl:flex xl:flex lg:hidden md:hidden sm:hidden xs:hidden xx:hidden'>Election</a></li>
-                            <li><a href="/contact-us" className='p-4 font-kanit text-fonts 2xl:flex xl:flex lg:hidden md:hidden sm:hidden xs:hidden xx:hidden hover:text-black hover:underline'>Contact Us</a></li>
-                            <li><a href="/security" className="p-4 font-kanit text-fonts 2xl:flex xl:flex lg:hidden md:hidden sm:hidden xs:hidden xx:hidden hover:text-black hover:underline">Security</a></li>
-                            <li><a href="/terms" className='p-4 font-kanit text-fonts 2xl:flex xl:flex lg:hidden md:hidden sm:hidden xs:hidden xx:hidden hover:text-black hover:underline'>Terms &amp; Conditions</a></li>             
-                        </ul>
-                    </div>
-                    <div className="2xl:w-[22%] xl:w-[30%] lg:w-[30%] md:w-[30%] sm:w-[60%] xs:w-[90%] xx:w-[90%] h-full flex 2xl:justify-center xl:justify-center lg:justify-center md:justify-between sm:justify-center xs:justify-between items-center 2xl:p-2 xl:p-2 lg:p-2 md:p-0 sm:p-0 xs:p-0">
-                        <div className='w-[45%] h-[70%] hover:cursor-pointer bg-bluerry flex justify-center items-center 2xl:flex xl:flex lg:flex md:hidden sm:hidden xs:hidden xx:hidden pl-2 pr-2 rounded-md'>
-                            <span className='text-white font-kanit' onClick={loginHandler}>Login</span>
-                        </div>
-                        <div className='w-full h-full 2xl:flex xl:flex lg:flex md:hidden sm:hidden xs:hidden xx:hidden justify-center items-center p-2'>
-                            <button className='group 2xl:p-3 xl:p-3 lg:p-3 md:p-3 sm:p-3 xs:p-1  2xl:w-[50%] xl:w-[50%] lg:w-[50%] md:w-[70%] sm:w-[70%] xs:w-[100%] font-kanit ml-4 rounded-xl flex justify-center items-center text-black' onClick={registerHandler}>
-                               Sign up
-                            </button>
-                        </div> 
-                        
-                    </div>
-                    <div className='w-full h-full 2xl:hidden xl:hidden lg:hidden md:flex sm:flex xs:flex xx:flex justify-end items-center p-2'>
-                        { <svg onClick={handleClick} xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 28 28">
-                            <path fill="currentColor" d="M3 6.75A.75.75 0 0 1 3.75 6h18.5a.75.75 0 0 1 0 1.5H3.75A.75.75 0 0 1 3 6.75m0 14a.75.75 0 0 1 .75-.75h16.5a.75.75 0 0 1 0 1.5H3.75a.75.75 0 0 1-.75-.75M3.75 13a.75.75 0 0 0 0 1.5h20.5a.75.75 0 0 0 0-1.5z"/>
-                        </svg> }
-                    </div>
-                {
-                    display && (<Preview/>)
-                }
+          {/* Mobile Menu Button */}
+          <button
+            onClick={() => setMenuOpen(!isMenuOpen)}
+            className="lg:hidden p-2 text-bluerry hover:bg-gray-100 rounded-lg"
+          >
+            <svg
+              className="w-8 h-8"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              {isMenuOpen ? (
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              ) : (
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              )}
+            </svg>
+          </button>
+        </div>
 
-                </div>
-        </section>
-    )
-}
+        {/* Updated Mobile Menu */}
+        {isMenuOpen && (
+          <div className="lg:hidden fixed inset-0 bg-white z-40 pt-20 h-screen">
+            <div className="container mx-auto px-4 h-full flex flex-col">
+              <nav className="flex flex-col gap-2 py-4 border-t border-gray-100">
+                {NAV_ITEMS.map((item) => (
+                  <Link
+                    key={item.name}
+                    to={item.path}
+                    className="py-3 px-4 text-bluerry font-kanit text-lg hover:bg-gray-50 rounded-lg"
+                    onClick={() => setMenuOpen(false)}
+                  >
+                    {item.name}
+                  </Link>
+                ))}
+              </nav>
+
+              {/* Updated Auth Links with correct paths */}
+              <div className="flex flex-col gap-4 mt-auto pb-8">
+                <Link
+                  to="/login/user" // Match your App.tsx route
+                  className="w-full py-3 text-center font-kanit text-bluerry border-2 border-bluerry rounded-lg hover:bg-bluerry/5"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  Log in
+                </Link>
+                <Link
+                  to="/register/user" // Match your App.tsx route
+                  className="w-full py-3 text-center bg-bluerry text-white font-kanit rounded-lg hover:bg-blue-700"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  Sign Up
+                </Link>
+              </div>
+            </div>
+          </div>
+        )}
+      </header>
+
+      {/* Spacer */}
+      <div className="h-20" />
+    </>
+  );
+};
 
 export default Header;
