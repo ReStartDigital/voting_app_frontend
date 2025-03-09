@@ -1,6 +1,6 @@
 import React from "react";
 
-interface ProfileProps {
+export interface ProfileProps {
     image: string;
     name: string;
     manifesto: string;
