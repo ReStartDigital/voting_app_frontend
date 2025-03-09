@@ -16,6 +16,7 @@ import AfterLogin from './Components/AfterLogin';
 import Terms from './Components/Terms';
 import ContactUs from './Components/ContactUs';
 import Footer from './Components/Footer';
+import CheckAdminAccess from "./Reusable/CheckAdminAccess";
 
  const RenderHeader = ()=>{
     const navigate = useLocation();
@@ -43,11 +44,12 @@ const App:React.FunctionComponent = ()=>{
               <Route path='/security' element={<Security/>}/>
               <Route path='/change/password/user/vote-app/reset-password' element={<ChangePassword/>}/>
               <Route path='/admin/dashboard/election' element={
-                <Protect children={<Dashboard/>}/>
+                <CheckAdminAccess children={<Dashboard/>}/>
                 }/>
                 <Route path='/user/default/page' element={
                   <Protect children={<AfterLogin/>}/>
                   }/>
+
           </Routes>
           <Footer/>
       </Router>
