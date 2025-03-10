@@ -112,14 +112,14 @@ const CandidateForm: React.FC<CandidateFormProps> = ({ users, elections, onSubmi
 
                     {/* Manifesto */}
                     <div>
-                        <label className="block text-sm font-kanit text-gray-600">Manifesto</label>
+                        <label className="block text-sm font-kanit text-gray-600">Slogan</label>
                         <textarea
                             name="manifesto"
                             value={formData.manifesto}
                             onChange={handleChange}
                             className="w-full p-2 border font-kanit rounded-md bg-gray-100"
                             rows={4}
-                            placeholder="Enter candidate manifesto..."
+                            placeholder="Enter candidate slogan..."
                             required
                         />
                     </div>
