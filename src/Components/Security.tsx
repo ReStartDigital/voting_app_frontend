@@ -1,72 +1,161 @@
-import React from 'react';
-const photo = require('../assets/images/Frame65.png');
-const Phoneimg = require('../assets/images/Frame63.png');
-const security = require('../assets/images/Frame64.png');
+import React from "react";
+import {
+  ShieldCheckIcon,
+  LockClosedIcon,
+  UserCircleIcon,
+  ServerIcon,
+  ClipboardDocumentCheckIcon,
+} from "@heroicons/react/24/outline";
+const photo = require("../assets/images/Frame65.png");
+const security = require("../assets/images/Frame64.png");
 
+interface Feature {
+  icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+  title: string;
+  description: string;
+}
 
+const features: Feature[] = [
+  {
+    icon: ShieldCheckIcon,
+    title: "End-to-End Encryption",
+    description: "Your data is scrambled and unreadable to anyone except you",
+  },
+  {
+    icon: LockClosedIcon,
+    title: "Secure Servers",
+    description:
+      "Housed in facilities with robust physical and digital security",
+  },
+  {
+    icon: UserCircleIcon,
+    title: "Two-Factor Auth",
+    description: "Ensures only authorized individuals can access your account",
+  },
+  {
+    icon: ServerIcon,
+    title: "Regular Audits",
+    description: "Continuous security checks to identify vulnerabilities",
+  },
+  {
+    icon: ClipboardDocumentCheckIcon,
+    title: "Compliance",
+    description: "Meets all industry security standards and regulations",
+  },
+];
 
 const Security = () => {
-
   return (
-    <section className='w-full h-full'>
-        <section className='w-full h-full flex flex-col justify-center items-center gap-5'>
-            <div className='w-full h-15vh flex flex-col justify-center items-center'>
-                <span className='text-4xl font-bold text-bluerry font-font-kanit'>Security system</span>
-            </div>
-           
-           <div className="w-full">
-               <img src={Phoneimg} alt="Security" className='object-cover w-full h-[80%]'/>
-           </div>
-       </section>
-       <div className='w-full h-15vh flex justify-center items-center'>
-            <span className='text-bluerry text-2xl text-center font-kanit'>Secure Decisions-Making Service</span>
-       </div>
-       <section className='flex flex-col justify-center items-center px-3'>
-           <div className='w-[70%] flex justify-center items-center'>
-              <span className='font-kanit text-need text-center text-2xl'>In today's digital age, making informed decisions can be a daunting task. 
-              With the rise of cyber threats and data breaches, 
-              it's essential to ensure that your decision-making process is secure and protected.</span>
-           </div>           
-       </section>
-        <div className='w-full mt-8 flex justify-center items-center'>
-               <div className="w-[80%] flex justify-center items-center p-4 gap-4">
-                <img src={security} alt="secuirty-image" className='object-cover object-center h-96'/>
-                <span className='font-kanit text-need text-center text-2xl'>At eVote Restart, we understand the importance of security and confidentiality. That's why we offer a service that allows individuals to make decisions in a 100% secure environment.</span>
-               </div> 
+    <section className="w-full min-h-screen bg-gradient-to-b from-white to-blue-50 py-16">
+      <div className="container mx-auto px-4">
+        {/* Hero Section */}
+        <div className="text-center mb-16">
+          <h1 className="text-4xl md:text-5xl font-kanit font-bold bg-gradient-to-r from-bluerry to-blue-600 bg-clip-text text-transparent">
+            Our Security System
+          </h1>
+          <p className="mt-4 text-lg text-gray-600 font-kanit">
+            Protecting your decisions with state-of-the-art security measures
+          </p>
         </div>
-       <section className='w-full h-full flex flex-col justify-center items-center'>
-        <div className='w-full h-15vh flex justify-center items-center'>
-            <span className='text-bluerry mt-4 font-kanit text-4xl text-center'>How it works</span>
-        </div>
-        <div className='w-[75%]'>     
-           <div className='w-full'>
-               <p className="font-kanit text-xl text-need">Our secure decision-making service utilizes state-of-the-art encryption technology to protect your data. Here's how it works:</p>
-               <p className='mt-4 text-xl text-need font-kanit'>1. End-to-End Encryption: Our platform uses end-to-end encryption, ensuring that your data is scrambled and unreadable to anyone except you.</p>
-               <p className="font-kanit text-xl text-need">2. Secure Servers: Our servers are housed in secure facilities with robust physical and digital security measures.</p>
-               <p className="font-kanit text-xl text-need">3. Two-Factor Authentication: We require two-factor authentication to ensure that only authorized individuals can access your account.</p>
-               <p className="font-kanit text-xl text-need">4. Regular Security Audits: Our system undergoes regular security audits to identify and address potential vulnerabilities.</p>
-           </div>
-        </div>
-       </section>
-      
-       <section className='flex justify-center items-center '>
-        <div className='flex justify-center items-center w-[80%] p-4 gap-5'>
-            <div className="w-full h-full">
-                 <div className='w-full h-15vh flex justify-center items-center'>
-                    <span className='text-bluerry font-kanit text-3xl'>Trust Us with Your Decision-Making Needs</span>
-                </div>
-               <span className='text-xl text-black font-kanit'>At eVote Restart, we're committed to providing a secure and reliable decision-making service. 
-                Our team of experts is dedicated to ensuring that your data is protected and your decisions are informed.</span>
-           </div>
-           <div className="w-full h-full flex justify-center items-center">
-               <img src={photo} alt="image2" className='w-[507] h-96 object-cover' />
-           </div>
-        </div>
-          
-       </section>
-    </section>
-);
 
-}
+        {/* Security Features Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+          {features.map((feature, index) => {
+            const IconComponent = feature.icon;
+            return (
+              <div
+                key={index}
+                className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow"
+              >
+                <div className="text-bluerry mb-4">
+                  <IconComponent className="w-8 h-8" />
+                </div>
+                <h3 className="text-xl font-kanit font-semibold text-bluerry mb-2">
+                  {feature.title}
+                </h3>
+                <p className="text-gray-600 font-kanit">
+                  {feature.description}
+                </p>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* How It Works Section */}
+        <div className="bg-white rounded-xl shadow-lg p-8 mb-16">
+          <h2 className="text-3xl font-kanit font-bold text-bluerry mb-8 text-center">
+            How Our Security Works
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div>
+              <img
+                src={security}
+                alt="Security diagram"
+                className="w-full h-auto rounded-lg"
+              />
+            </div>
+            <div className="space-y-6">
+              <p className="text-gray-600 font-kanit text-lg">
+                At eVote Restart, we understand the importance of security and
+                confidentiality. That's why we offer a service that allows
+                individuals to make decisions in a 100% secure environment.
+              </p>
+              <div className="space-y-4">
+                {[
+                  "Military-grade encryption for all data",
+                  "Continuous monitoring and threat detection",
+                  "Regular penetration testing",
+                  "Compliance with GDPR and other regulations",
+                  "Secure data storage and transmission",
+                ].map((item, index) => (
+                  <div key={index} className="flex items-start space-x-3">
+                    <div className="w-6 h-6 bg-bluerry rounded-full flex items-center justify-center flex-shrink-0">
+                      <svg
+                        className="w-4 h-4 text-white"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M5 13l4 4L19 7"
+                        />
+                      </svg>
+                    </div>
+                    <p className="text-gray-600 font-kanit">{item}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Trust Section */}
+        <div className="bg-bluerry rounded-xl p-8 text-white">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            <div>
+              <h2 className="text-3xl font-kanit font-bold mb-4">
+                Trust Us with Your Decision-Making Needs
+              </h2>
+              <p className="text-gray-200 font-kanit">
+                Our team of experts is dedicated to ensuring that your data is
+                protected and your decisions are informed.
+              </p>
+            </div>
+            <div>
+              <img
+                src={photo}
+                alt="Security illustration"
+                className="w-full h-auto rounded-lg"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
 
 export default Security;

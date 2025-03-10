@@ -13,6 +13,10 @@ import Dashboard from './AuthComponents/Dashboard';
 import { useLocation } from 'react-router-dom';
 import Protect from './Reusable/Protect';
 import AfterLogin from './Components/AfterLogin';
+import Terms from './Components/Terms';
+import ContactUs from './Components/ContactUs';
+import Footer from './Components/Footer';
+import CheckAdminAccess from "./Reusable/CheckAdminAccess";
 
  const RenderHeader = ()=>{
     const navigate = useLocation();
@@ -31,6 +35,8 @@ const App:React.FunctionComponent = ()=>{
         <RenderHeader/>
           <Routes>
               <Route path='/' element={<Home/>}/>
+              <Route path='/terms' element={<Terms/>}/>
+              <Route path='/contact-us' element={<ContactUs/>}/>
               <Route path="/login/user" element={<Login/>} />
               <Route path="/register/user" element={<Register/>}/> 
               <Route path="/election" element={<Election/>} /> 
@@ -38,12 +44,14 @@ const App:React.FunctionComponent = ()=>{
               <Route path='/security' element={<Security/>}/>
               <Route path='/change/password/user/vote-app/reset-password' element={<ChangePassword/>}/>
               <Route path='/admin/dashboard/election' element={
-                <Protect children={<Dashboard/>}/>
+                <CheckAdminAccess children={<Dashboard/>}/>
                 }/>
                 <Route path='/user/default/page' element={
                   <Protect children={<AfterLogin/>}/>
                   }/>
+
           </Routes>
+          <Footer/>
       </Router>
   );
 }
