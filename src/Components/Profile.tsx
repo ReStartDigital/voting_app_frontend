@@ -19,9 +19,8 @@ const Profile: React.FC<ProfileProps> = ({ image, name, manifesto, position, tit
                 className="w-32 h-32 object-cover rounded-full border-4 border-gray-200 shadow-sm"
             />
             <h2 className="text-xl font-kanit mt-4 text-gray-800">{name}</h2>
-            <span className="text-sm font-kanit text-gray-600">Title: {title}</span>
-            <span className="text-sm text-gray-500 font-kanit">{position}</span>
-            <p className="text-sm text-gray-700 mt-3 px-3 italic font-kanit">{manifesto}</p>
+            <span className="text-sm text-gray-500 font-kanit">Position: {position}</span>
+            <p className="text-sm text-gray-700 mt-3 px-3 italic font-kanit">Slogan: {manifesto}</p>
         </div>
     );
 };
