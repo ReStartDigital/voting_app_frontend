@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
-import CandidateForm from "./CandidateForm";
 import axios from "axios";
 import { toast , Toaster } from "react-hot-toast";
+import ShowCandidates from "../Reusable/ShowCandidates";
 
 export interface Props {
     state?: string;
@@ -11,54 +11,56 @@ export interface Props {
     id: string;
 }
 
-const FetchAdminElection: React.FunctionComponent<Props> = ({ title , state , start_date , end_date , id})=>{
+const PreviewCard: React.FunctionComponent<Props> = ({ title , state , start_date , end_date , id})=>{
     const [ display , setDisplay ] = React.useState(false);
     const [ loading , setLoading ] = React.useState(false);
+    const [ data , setData ] = React.useState<any[]>([]);
     const token = sessionStorage.getItem("token");
 
-    const handleClick = (event: any)=>{
+
+    const handleClick = async(event: any)=>{
         console.log(id)
+        await fetchData();
         setDisplay(true);
     }
 
-   const handleCancel = (e: any)=>{
-        setDisplay(false);
-    }
+
     useEffect(() => {
+        if (display) {
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "auto";
+        }
+
         const user_id = sessionStorage.getItem("user_id");
         if (!user_id) {
             window.location.href = "/login/user";
-        }
-    }, []);
+        };
 
+    }, [display]);
 
-    const handleSubmit = async(formData: FormData)=>{
-        console.log(formData);
+    const fetchData = async()=>{
         try{
-            const response = await axios.post(`http://localhost:6060/protected/router/save/candidate/detail/${user_id}/${id}` , formData , {
-                withCredentials: true,
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                    "Content-Type": "multipart/form-data"
-                }
-            });
-
-            toast.success("Updated successfully", {
-                style:{
-                    fontFamily: "kanit",
-                    backgroundColor: "black",
-                    color: "white"
-                }
-            });
-            setDisplay(false);
+            const response = await axios.get(`http://localhost:6060/protected/router/get/candidates/${id}` ,
+                {
+                    withCredentials: true,
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                })
+            console.log(response.data)
+            setData(response.data)
         }catch(error: any){
             console.log(error)
         }
+
     }
 
-    const handleUpdated = ()=>{
-        setLoading(false);
+    const handleClose = (e: any)=>{
+        setDisplay(false);
     }
+
+
 
     const user_id = sessionStorage.getItem("user_id");
 
@@ -119,22 +121,24 @@ const FetchAdminElection: React.FunctionComponent<Props> = ({ title , state , st
                 <span className='font-kanit'>{end_date}</span>
             </div>
 
-            {   display &&
-                <div className="fixed inset-0 flex z-50 items-center justify-center bg-black bg-opacity-50">
+            {display && (
+                <div className="fixed inset-0 flex z-50 items-center justify-center bg-black bg-opacity-50"  onClick={(e) => e.stopPropagation()}>
                     <div className="bg-white w-full h-full p-8 overflow-auto">
                         <button
-                            className="absolute top-4 right-4 bg-gray-200 p-2 rounded-full"
+                            className="absolute top-4 font-kanit right-4 bg-black text-white px-4 py-2 rounded"
                             onClick={() => setDisplay(false)}
                         >
-                            ✖
+                            Close
                         </button>
-                        <CandidateForm users={[{ id: user_id, name: "User" }]} elections={[{ id, title }]}
-                                       onSubmit={handleSubmit}  Cancel={handleCancel} state={handleUpdated}/>
+
+                        {display && (
+                            <ShowCandidates candidates={data} onClose={() => setDisplay(false)} />
+                        )}
                     </div>
                 </div>
-            }
+            )}
         </div>
     )
 }
 
-export default FetchAdminElection;
+export default PreviewCard;
