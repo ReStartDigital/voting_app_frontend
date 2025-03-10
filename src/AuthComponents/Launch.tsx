@@ -3,8 +3,10 @@ import Title from "../Reusable/Title";
 import UseStore from "../store/UseStore";
 import ElectionForm from "../Components/ElectionForm";
 import axios from "axios";
-import { format } from "date-fns";
+import { format, parseISO } from "date-fns";
 import FetchAdminElection, { Props } from "../Reusable/FetchAdminElection";
+
+
 
 const Launch = () => {
     const { initial, toggleState } = UseStore();
@@ -25,12 +27,15 @@ const Launch = () => {
         }
     }, []);
 
+
     const handleElectionScreen = () => {
         toggleState();
     };
 
+
     const formatDate = (isoString: string) => {
-        return format(new Date(isoString), "MMM dd, yyyy hh:mm a");
+        if (!isoString) return "No Date Provided"; // ✅ Handle missing dates
+        return format(parseISO(isoString), "MMM dd, yyyy hh:mm a"); // ✅ Format to readable format
     };
 
     const FetchElection = async () => {
@@ -99,12 +104,14 @@ const Launch = () => {
                     <p className="text-center text-red-500 mt-5 font-kanit">{error}</p>
                 ) : filteredElections.length > 0 ? (
                     filteredElections.map((item: Props, index: number) => (
+
                         <FetchAdminElection
                             key={index}
                             title={item.title}
-                            startTime={formatDate(item.startTime)}
-                            endTime={formatDate(item.endTime)}
+                            start_date={formatDate(item.start_date)}
+                            end_date={formatDate(item.end_date)}
                             id={item.id}
+                            state={item.state}
                         />
                     ))
                 ) : (
