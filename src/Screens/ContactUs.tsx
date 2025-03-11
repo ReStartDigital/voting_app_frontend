@@ -95,7 +95,7 @@ const ContactUs: React.FC = () => {
 
               {/* Social Connections */}
               <div className="mt-12 pt-8 border-t border-gray-200">
-                <h3 className="font-kanit font-semibold text-gray-800 mb-4">
+                <h3 className="font-kanit text-gray-800 mb-4">
                   Instant Messaging
                 </h3>
                 <div className="flex gap-4">
@@ -132,7 +132,7 @@ const ContactUs: React.FC = () => {
                     name="name"
                     value={formData.name}
                     onChange={handleChange}
-                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-bluerry/50 focus:border-bluerry transition-all"
+                    className="w-full p-3 border border-gray-300 font-kanit rounded-lg focus:ring-2 focus:ring-bluerry/50 focus:border-bluerry transition-all"
                     placeholder="Kwame Boakye"
                     required
                   />
@@ -147,7 +147,7 @@ const ContactUs: React.FC = () => {
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
-                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-bluerry/50 focus:border-bluerry transition-all"
+                    className="w-full p-3 border border-gray-300 font-kanit rounded-lg focus:ring-2 focus:ring-bluerry/50 focus:border-bluerry transition-all"
                     placeholder="restartdigital@gmail.com"
                     required
                   />
@@ -162,7 +162,7 @@ const ContactUs: React.FC = () => {
                     value={formData.message}
                     onChange={handleChange}
                     rows={5}
-                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-bluerry/50 focus:border-bluerry transition-all"
+                    className="w-full p-3 border border-gray-300 font-kanit rounded-lg focus:ring-2 focus:ring-bluerry/50 focus:border-bluerry transition-all"
                     placeholder="How can we help you?"
                     required
                   ></textarea>

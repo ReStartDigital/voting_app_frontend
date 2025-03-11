@@ -82,7 +82,7 @@ const Login: React.FC = () => {
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-bluerry/50 focus:border-bluerry transition-all"
+                  className="w-full pl-10 pr-4 py-3 font-kanit border border-gray-300 rounded-lg focus:ring-2 focus:ring-bluerry/50 focus:border-bluerry transition-all"
                   type="email"
                   placeholder="restartdigital@gmail.com"
                   required
@@ -100,7 +100,7 @@ const Login: React.FC = () => {
                   name="password"
                   value={formData.password}
                   onChange={handleChange}
-                  className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-bluerry/50 focus:border-bluerry transition-all"
+                  className="w-full pl-10 pr-4 py-3 font-kanit border border-gray-300 rounded-lg focus:ring-2 focus:ring-bluerry/50 focus:border-bluerry transition-all"
                   type="password"
                   placeholder="••••••••"
                   required

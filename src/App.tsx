@@ -1,22 +1,23 @@
 import React from 'react';
 import { BrowserRouter as Router , Routes , Route } from "react-router-dom";
 import './App.css';
-import Header from "./Components/Header";
-import Home from "./Components/Home";
-import Login from "./Components/Login";
-import Register from "./Components/Register";
-import Election from './Components/election';
+import Header from "./Screens/Header";
+import Home from "./Screens/Home";
+import Login from "./Screens/Login";
+import Register from "./Screens/Register";
+import Election from './Screens/election';
 import Forgotpassword from './Reusable/ForgotPassword';
-import Security from './Components/Security';
+import Security from './Screens/Security';
 import ChangePassword from './Reusable/ChangePassword';
 import Dashboard from './AuthComponents/Dashboard';
 import { useLocation } from 'react-router-dom';
 import Protect from './Reusable/Protect';
-import AfterLogin from './Components/AfterLogin';
-import Terms from './Components/Terms';
-import ContactUs from './Components/ContactUs';
-import Footer from './Components/Footer';
+import AfterLogin from './Screens/AfterLogin';
+import Terms from './Screens/Terms';
+import ContactUs from './Screens/ContactUs';
+import Footer from './Screens/Footer';
 import CheckAdminAccess from "./Reusable/CheckAdminAccess";
+import NotFound from "./Screens/NotFound";
 
  const RenderHeader = ()=>{
     const navigate = useLocation();
@@ -35,6 +36,7 @@ const App:React.FunctionComponent = ()=>{
         <RenderHeader/>
           <Routes>
               <Route path='/' element={<Home/>}/>
+              <Route path="*" element={<NotFound />}/>
               <Route path='/terms' element={<Terms/>}/>
               <Route path='/contact-us' element={<ContactUs/>}/>
               <Route path="/login/user" element={<Login/>} />

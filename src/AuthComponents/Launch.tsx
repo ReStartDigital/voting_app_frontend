@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from "react";
 import Title from "../Reusable/Title";
 import UseStore from "../store/UseStore";
-import ElectionForm from "../Components/ElectionForm";
+import ElectionForm from "../Screens/ElectionForm";
 import axios from "axios";
 import { format, parseISO } from "date-fns";
 import FetchAdminElection, { Props } from "../Reusable/FetchAdminElection";
+import {Alert, AlertDescription, AlertTitle} from "../components/ui/alert";
+import {Terminal} from "lucide-react";
+import {Skeleton} from "../components/ui/skeleton";
+import {HoverCard, HoverCardContent, HoverCardTrigger} from "../components/ui/hover-card";
 
 
 
@@ -82,24 +86,34 @@ const Launch = () => {
                     onChange={(e) => setSearchTerm(e.target.value)}
                 />
 
+                <HoverCard>
+                    <HoverCardTrigger>
+                        <button
+                            className="font-kanit text-white bg-bluerry p-4 flex justify-center items-center rounded-md"
+                            onClick={handleElectionScreen}
+                        >
+                            <svg xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em" viewBox="0 0 56 56">
+                                <path
+                                    fill="#fff"
+                                    d="M46.586 9.45c-2.39-2.391-5.766-2.766-9.75-2.766H19.117c-3.937 0-7.312.375-9.703 2.765s-2.742 5.742-2.742 9.657v17.718c0 4.008.352 7.336 2.742 9.727s5.766 2.765 9.774 2.765h17.648c3.984 0 7.36-.375 9.75-2.765s2.742-5.719 2.742-9.727V19.176c0-4.008-.351-7.36-2.742-9.727M28 41.745a1.855 1.855 0 0 1-1.852-1.851V29.84h-10.03c-1.032 0-1.852-.844-1.852-1.828s.82-1.875 1.851-1.875h10.031V16.105c0-1.054.82-1.875 1.852-1.875c1.055 0 1.852.82 1.852 1.875v10.032h10.054c1.032 0 1.852.89 1.852 1.875c0 .984-.82 1.828-1.852 1.828H29.852v10.055A1.84 1.84 0 0 1 28 41.746"
+                                />
+                            </svg>
+                            New Election
+                        </button>
+                    </HoverCardTrigger>
+                    <HoverCardContent
+                    className="font-kanit z-40"
+                    >
+                        Setup an election now
+                    </HoverCardContent>
+                </HoverCard>
                 {/* ➕ Add New Election Button */}
-                <button
-                    className="font-kanit text-white bg-bluerry p-4 flex justify-center items-center rounded-md"
-                    onClick={handleElectionScreen}
-                >
-                    <svg xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em" viewBox="0 0 56 56">
-                        <path
-                            fill="#fff"
-                            d="M46.586 9.45c-2.39-2.391-5.766-2.766-9.75-2.766H19.117c-3.937 0-7.312.375-9.703 2.765s-2.742 5.742-2.742 9.657v17.718c0 4.008.352 7.336 2.742 9.727s5.766 2.765 9.774 2.765h17.648c3.984 0 7.36-.375 9.75-2.765s2.742-5.719 2.742-9.727V19.176c0-4.008-.351-7.36-2.742-9.727M28 41.745a1.855 1.855 0 0 1-1.852-1.851V29.84h-10.03c-1.032 0-1.852-.844-1.852-1.828s.82-1.875 1.851-1.875h10.031V16.105c0-1.054.82-1.875 1.852-1.875c1.055 0 1.852.82 1.852 1.875v10.032h10.054c1.032 0 1.852.89 1.852 1.875c0 .984-.82 1.828-1.852 1.828H29.852v10.055A1.84 1.84 0 0 1 28 41.746"
-                        />
-                    </svg>
-                    New Election
-                </button>
+
             </div>
 
             <div className="w-full h-full flex flex-col gap-4 p-3 mb-4">
                 {loading ? (
-                    <p className="text-center text-gray-500 mt-5 font-kanit">Loading elections...</p>
+                    <Skeleton className="w-[100px] h-[20px] rounded-full" />
                 ) : error ? (
                     <p className="text-center text-red-500 mt-5 font-kanit">{error}</p>
                 ) : filteredElections.length > 0 ? (
@@ -115,7 +129,15 @@ const Launch = () => {
                         />
                     ))
                 ) : (
-                    <p className="text-center text-gray-500 mt-5 font-kanit">No elections found</p>
+                    <Alert>
+                        <Terminal className="h-4 w-4" />
+                        <AlertTitle className="font-kanit"
+                        >Election</AlertTitle>
+                        <AlertDescription className="font-kanit"
+                        >
+                            No elections found
+                        </AlertDescription>
+                    </Alert>
                 )}
             </div>
         </section>

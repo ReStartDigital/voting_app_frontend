@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import Title from '../Reusable/Title';
 import axios from "axios";
-import Profile from "../Components/Profile";
 import FetchAdminElection, {Props} from "../Reusable/FetchAdminElection";
 import {format} from "date-fns";
-import PreviewCard from "../Components/PreviewCard";
+import PreviewCard from "../Screens/PreviewCard";
+import {Alert, AlertDescription, AlertTitle} from "../components/ui/alert";
+import {Terminal} from "lucide-react";
 
 
 const Preview = () => {
@@ -92,7 +93,15 @@ const Preview = () => {
 
                     ))
                 ) : (
-                    <p className="text-gray-500 font-kanit">No candidates available.</p>
+                    <Alert>
+                        <Terminal className="h-4 w-4" />
+                        <AlertTitle className="font-kanit"
+                        >Election</AlertTitle>
+                        <AlertDescription className="font-kanit"
+                        >
+                            No Candidates Available
+                        </AlertDescription>
+                    </Alert>
                 )}
             </div>
         </section>
