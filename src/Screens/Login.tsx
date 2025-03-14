@@ -66,7 +66,7 @@ const Login: React.FC = () => {
           </div>
 
           {errorMessage && (
-            <div className="mb-6 p-3 bg-red-50 text-red-700 rounded-lg text-sm">
+            <div className="mb-6 p-3 bg-red-50 font-kanit text-red-700 rounded-lg text-sm">
               {errorMessage}
             </div>
           )}

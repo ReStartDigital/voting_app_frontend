@@ -18,6 +18,7 @@ import ContactUs from './Screens/ContactUs';
 import Footer from './Screens/Footer';
 import CheckAdminAccess from "./Reusable/CheckAdminAccess";
 import NotFound from "./Screens/NotFound";
+import ActiveElections from "./Screens/ActiveElection";
 
  const RenderHeader = ()=>{
     const navigate = useLocation();
@@ -51,7 +52,9 @@ const App:React.FunctionComponent = ()=>{
                 <Route path='/user/default/page' element={
                   <Protect children={<AfterLogin/>}/>
                   }/>
-
+              <Route path='/elections/active' element={
+                  <Protect children={<ActiveElections/>}/>
+              }/>
           </Routes>
           <Footer/>
       </Router>

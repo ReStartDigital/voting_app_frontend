@@ -29,11 +29,8 @@ const Protect: React.FC<Props> = ({ children }) => {
             if(response.data){
                 setStatus(true)
             }
-            console.log(response.data);
-            
-            // setStatus(response.data.states === true);
         } catch (e) {
-            console.error("Error fetching protected route:", e);
+            //console.error("Error fetching protected route:", e);
             setStatus(false);
         }
     };

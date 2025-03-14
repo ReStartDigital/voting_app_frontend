@@ -2,6 +2,8 @@ import React, {useEffect} from "react";
 import CandidateForm from "./CandidateForm";
 import axios from "axios";
 import { toast , Toaster } from "react-hot-toast";
+import {Trash} from "lucide-react";
+import {Alert} from "flowbite-react";
 
 export interface Props {
     state?: string;
@@ -14,10 +16,10 @@ export interface Props {
 const FetchAdminElection: React.FunctionComponent<Props> = ({ title , state , start_date , end_date , id})=>{
     const [ display , setDisplay ] = React.useState(false);
     const [ loading , setLoading ] = React.useState(false);
+    const [ deleted , setDeleted ] = React.useState(false);
     const token = sessionStorage.getItem("token");
 
     const handleClick = (event: any)=>{
-        console.log(id)
         setDisplay(true);
     }
 
@@ -56,6 +58,24 @@ const FetchAdminElection: React.FunctionComponent<Props> = ({ title , state , st
         }
     }
 
+    const handleDelete = async()=>{
+        console.log(id);
+        try{
+            const response = await axios.delete(`http://localhost:6060/protected/router/get/election/delete/${id}` ,
+                {
+                    withCredentials: true,
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    }
+                })
+            setTimeout(()=>{
+                setDeleted(true);
+            },3000)
+        }catch(e:any){
+            console.log(e);
+        }
+    }
+
     const handleUpdated = ()=>{
         setLoading(false);
     }
@@ -63,8 +83,9 @@ const FetchAdminElection: React.FunctionComponent<Props> = ({ title , state , st
     const user_id = sessionStorage.getItem("user_id");
 
     return(
-        <div className="w-full h-[25%] border-2 border-gray-200 flex justify-between hover:cursor-pointer items-start p-4" onClick={handleClick}>
+        <div className="w-full h-[35%] border-2 border-gray-200 flex justify-between hover:cursor-pointer items-start p-4 flex-col" >
             <Toaster position={"top-right"}/>
+            <div className="w-full h-full flex justify-between hover:cursor-pointer items-start">
             <div className='flex justify-start items-start flex-col'>
                 <span className='font-kanit uppercase'>Title</span>
                 <span className='font-kanit'>{title}</span>
@@ -133,6 +154,19 @@ const FetchAdminElection: React.FunctionComponent<Props> = ({ title , state , st
                     </div>
                 </div>
             }
+                {
+                    deleted &&
+                    <Alert color="success">
+                        <span className="font-kanit">Info alert!. Deleted Successfully.</span>
+                    </Alert>
+                }
+            </div>
+            <div className="w-full flex justify-between items-start">
+                <button className='text-white capitalize rounded-md bg-bluerry font-kanit p-2' onClick={handleClick}>
+                    add candidate
+                </button>
+               <Trash className="text-red-500" onClick={handleDelete}/>
+            </div>
         </div>
     )
 }
