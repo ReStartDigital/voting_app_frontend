@@ -193,7 +193,7 @@ const Election: React.FC = () => {
       {/* Testimonials Section */}
       <div className="container mx-auto px-6 py-16">
         <h2 className="text-4xl font-bold font-kanit text-bluerry text-center mb-12">
-          What Schools Are Saying
+          What People Are Saying
         </h2>
         <div className="grid md:grid-cols-2 gap-8">
           <div className="bg-white p-8 rounded-lg shadow-md">
@@ -208,8 +208,8 @@ const Election: React.FC = () => {
                 className="w-12 h-12 rounded-full object-cover"
               />
               <div>
-                <h4 className="font-kanit font-semibold">John Doe</h4>
-                <p className="text-gray-500 font-kanit">School Administrator</p>
+                <h4 className="font-kanit font-semibold">Akwasi Debrah</h4>
+                <p className="text-gray-500 font-kanit">Dep. President, COMPSSA-KsTU</p>
               </div>
             </div>
           </div>
@@ -225,9 +225,9 @@ const Election: React.FC = () => {
                 className="w-12 h-12 rounded-full object-cover"
               />
               <div>
-                <h4 className="font-kanit font-semibold">Jane Smith</h4>
+                <h4 className="font-kanit font-semibold">Ama Kusi</h4>
                 <p className="text-gray-500 font-kanit">
-                  Student Council President
+                  SRC President, KsTU
                 </p>
               </div>
             </div>

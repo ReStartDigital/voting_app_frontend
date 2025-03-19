@@ -33,21 +33,39 @@ const Footer: React.FunctionComponent = () => {
               and accessible digital voting solutions.
             </p>
             <div className="flex items-center gap-4">
-              <FacebookIcon
-                size={32}
-                round
-                className="hover:opacity-80 transition-opacity"
-              />
-              <TwitterIcon
-                size={32}
-                round
-                className="hover:opacity-80 transition-opacity"
-              />
-              <LinkedinIcon
-                size={32}
-                round
-                className="hover:opacity-80 transition-opacity"
-              />
+              <a
+                href="https://www.facebook.com/YourPageName"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FacebookIcon
+                  size={32}
+                  round
+                  className="hover:opacity-80 transition-opacity"
+                />
+              </a>
+              <a
+                href="https://twitter.com/YourHandle"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <TwitterIcon
+                  size={32}
+                  round
+                  className="hover:opacity-80 transition-opacity"
+                />
+              </a>
+              <a
+                href="https://www.linkedin.com/restart"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <LinkedinIcon
+                  size={32}
+                  round
+                  className="hover:opacity-80 transition-opacity"
+                />
+              </a>
               {/* <InstagramIcon
                 size={32}
                 round
@@ -112,18 +130,18 @@ const Footer: React.FunctionComponent = () => {
               <div className="flex items-start gap-3">
                 <MapPinIcon className="w-5 h-5 flex-shrink-0" />
                 <p>
-                  123 Election Street
+                  Kumasi - AK-040-6130
                   <br />
-                  Voting City, VC 12345
+                  Ashanti Region, Ghana
                 </p>
               </div>
               <div className="flex items-center gap-3">
                 <EnvelopeIcon className="w-5 h-5" />
                 <a
-                  href="mailto:info@evoterestart.com"
+                  href="mailto:info.restartdigital@gmail.com"
                   className="hover:text-white transition-colors"
                 >
-                  info@evoterestart.com
+                  info.restartdigital@gmail.com
                 </a>
               </div>
               <div className="flex items-center gap-3">
@@ -132,7 +150,7 @@ const Footer: React.FunctionComponent = () => {
                   href="tel:+1234567890"
                   className="hover:text-white transition-colors"
                 >
-                  +1 (234) 567-890
+                  +233 (0) 548-367-637
                 </a>
               </div>
             </div>
