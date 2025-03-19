@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 import { Spinner } from "flowbite-react";
 import { LockClosedIcon, EnvelopeIcon } from "@heroicons/react/24/outline";
 // import Logo from "../assets/images/logo.png";
@@ -134,12 +135,11 @@ const Login: React.FC = () => {
 
             <p className="text-center text-sm font-kanit text-gray-600">
               Don't have an account?{" "}
-              <a
-                href="/register/user"
+              <Link to="/register/user"
                 className="text-bluerry hover:text-blue-700 font-semibold"
               >
                 Create account
-              </a>
+              </Link>
             </p>
           </form>
         </div>

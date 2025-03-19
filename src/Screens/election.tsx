@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 const pic1 = require("../assets/images/Frame32.png");
 const pic2 = require("../assets/images/Frame65.png");
 // const pic3 = require("../assets/images/Frame81.png");
@@ -25,9 +26,11 @@ const Election: React.FC = () => {
             Modern, secure, and accessible voting solutions designed
             specifically for educational institutions
           </p>
-          <button className="bg-bluerry text-white px-8 py-3 rounded-lg font-kanit font-semibold hover:bg-blue-700 transition-colors">
-            Get Started
-          </button>
+          <Link to="/register/user">
+            <button className="bg-bluerry text-white px-8 py-3 rounded-lg font-kanit font-semibold hover:bg-blue-700 transition-colors">
+              Get Started
+            </button>
+          </Link>
         </div>
       </div>
 
@@ -229,23 +232,6 @@ const Election: React.FC = () => {
               </div>
             </div>
           </div>
-        </div>
-      </div>
-
-      {/* Call to Action Section */}
-      <div className="bg-gradient-to-r from-bluerry to-blue-500 py-16">
-        <div className="container mx-auto px-6 text-center">
-          <h2 className="text-3xl font-bold font-kanit text-white mb-4">
-            Ready to Revolutionize Your Elections?
-          </h2>
-          <p className="text-lg text-white font-kanit mb-8">
-            Experience the power of eBallot for yourself. Get started today and
-            discover a more efficient, secure, and accessible way to conduct
-            elections.
-          </p>
-          <button className="bg-white text-bluerry px-8 py-3 rounded-lg font-kanit font-semibold hover:bg-gray-200 transition-colors">
-            Get Started
-          </button>
         </div>
       </div>
     </div>
