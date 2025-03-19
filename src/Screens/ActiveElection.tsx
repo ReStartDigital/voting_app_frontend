@@ -56,8 +56,14 @@ export default function ActiveElections() {
         {},
         { withCredentials: true }
       );
-      console.log("Vote Response:", response.data);
-      toast.success(response?.data?.message);
+      // console.log("Vote Response:", response.data);
+      toast.success(response?.data?.message,{
+        style: {
+          backgroundColor: "black",
+          fontFamily: "kanit",
+          color: "white"
+        }
+      });
     } catch (error: any) {
       console.error("Vote Error:", error);
     }
@@ -137,7 +143,7 @@ export default function ActiveElections() {
                   {election.manifesto}
                 </p>
                 <Button
-                  className="mt-4 w-full bg-gradient-to-r from-blue-600 to-blue-600 hover:from-blue-700 hover:to-blue-700 text-white font-kanit py-2 rounded-lg transition-all duration-200"
+                  className="mt-4 w-full bg-bluerry hover:from-blue-700 hover:to-blue-700 text-white font-kanit py-2 rounded-lg transition-all duration-200"
                   onClick={() =>
                     handleClick(
                       election.id,

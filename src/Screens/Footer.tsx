@@ -139,7 +139,7 @@ const Footer: React.FunctionComponent = () => {
                 <EnvelopeIcon className="w-5 h-5" />
                 <a
                   href="mailto:info.restartdigital@gmail.com"
-                  className="hover:text-white transition-colors"
+                  className="hover:text-white 2xl:text-md xl:text-md lg:text-xs md:text-xs xs:text-xs xx:text-xs transition-colors"
                 >
                   info.restartdigital@gmail.com
                 </a>

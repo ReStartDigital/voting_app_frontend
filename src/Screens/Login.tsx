@@ -35,7 +35,7 @@ const Login: React.FC = () => {
       console.log(response.data);
       if (response.data.userId) {
         // sessionStorage.setItem("token", response.data.token);
-        sessionStorage.setItem("user_id", response.data.userId);
+        // sessionStorage.setItem("user_id", response.data.userId);
         window.location.href = "/user/default/page";
       } else {
         setErrorMessage(response?.data?.message || "Login failed");
