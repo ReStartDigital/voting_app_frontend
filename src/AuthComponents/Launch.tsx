@@ -9,6 +9,7 @@ import {Alert, AlertDescription, AlertTitle} from "../components/ui/alert";
 import {Terminal} from "lucide-react";
 import {Skeleton} from "../components/ui/skeleton";
 import {HoverCard, HoverCardContent, HoverCardTrigger} from "../components/ui/hover-card";
+import Cookie from "js-cookie";
 
 
 
@@ -19,11 +20,11 @@ const Launch = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
 
-    const id = sessionStorage.getItem("user_id");
-    const token = sessionStorage.getItem("token");
+    const id = Cookie.get("UUID")
+
 
     useEffect(() => {
-        if (id && token) {
+        if (id ) {
             FetchElection();
         } else {
             setLoading(false);
@@ -51,7 +52,7 @@ const Launch = () => {
                 `http://localhost:6060/protected/router/get/admin/election/${id}`,
                 {
                     withCredentials: true,
-                    headers: { Authorization: `Bearer ${token}` },
+
                 }
             );
             setData(response.data);

@@ -40,7 +40,6 @@ const FetchAdminElection: React.FunctionComponent<Props> = ({ title , state , st
             const response = await axios.post(`http://localhost:6060/protected/router/save/candidate/detail/${user_id}/${id}` , formData , {
                 withCredentials: true,
                 headers: {
-                    Authorization: `Bearer ${token}`,
                     "Content-Type": "multipart/form-data"
                 }
             });
@@ -54,7 +53,7 @@ const FetchAdminElection: React.FunctionComponent<Props> = ({ title , state , st
             });
             setDisplay(false);
         }catch(error: any){
-            console.log(error)
+            // console.log(error)
         }
     }
 

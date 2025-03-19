@@ -6,9 +6,10 @@ export interface ProfileProps {
     manifesto: string;
     position: string;
     title: string;
+    votes: string;
 }
 
-const Profile: React.FC<ProfileProps> = ({ image, name, manifesto, position, title }) => {
+const Profile: React.FC<ProfileProps> = ({ image, name, manifesto, position, title , votes }) => {
     const imageSrc = image.startsWith("data:image") ? image : `data:image/jpeg;base64,${image}`;
 
     return (
@@ -21,6 +22,7 @@ const Profile: React.FC<ProfileProps> = ({ image, name, manifesto, position, tit
             <h2 className="text-xl font-kanit mt-4 text-gray-800">{name}</h2>
             <span className="text-sm text-gray-500 font-kanit">Position: {position}</span>
             <p className="text-sm text-gray-700 mt-3 px-3 italic font-kanit">Slogan: {manifesto}</p>
+            <span className="font-kanit">Number of votes: {votes}</span>
         </div>
     );
 };

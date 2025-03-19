@@ -31,9 +31,9 @@ const Login: React.FC = () => {
         formData,
         { withCredentials: true }
       );
-
-      if (response.data.token && response.data.userId) {
-        sessionStorage.setItem("token", response.data.token);
+      console.log(response.data);
+      if (response.data.userId) {
+        // sessionStorage.setItem("token", response.data.token);
         sessionStorage.setItem("user_id", response.data.userId);
         window.location.href = "/user/default/page";
       } else {

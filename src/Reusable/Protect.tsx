@@ -12,25 +12,15 @@ const Protect: React.FC<Props> = ({ children }) => {
 
     const fetchData = async () => {
         try {
-            const token = sessionStorage.getItem("token");
-
-            if (!token) {
-        
-                setStatus(false);
-                return;
-            }
 
             const response = await axios.get("http://localhost:6060/protected/router/protect", {
                 withCredentials: true,
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
+
             });
             if(response.data){
                 setStatus(true)
             }
         } catch (e) {
-            //console.error("Error fetching protected route:", e);
             setStatus(false);
         }
     };

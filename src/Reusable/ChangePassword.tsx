@@ -16,7 +16,7 @@ const ChangePassword = () => {
   const [error, setError] = useState<string>("");
   const [ loading , setLoading ] = useState<boolean>(false);
   const [ searchParams ] = useSearchParams();
-  const token = searchParams.get("token");
+
 
   const handleSubmit = async(e: any) => {
     try{
@@ -27,7 +27,7 @@ const ChangePassword = () => {
           setLoading(false);
           return;
         };
-        const response = await axios.post(`http://localhost:6060/auth/reset-password?token=${token}`, formData , { withCredentials: true});
+        const response = await axios.post(`http://localhost:6060/auth/reset-password`, formData , { withCredentials: true});
         console.log(response.data);
         setLoading(false);
         setError("");

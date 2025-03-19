@@ -60,12 +60,10 @@ const Verify: React.FC<Option> = ({ handleVer , email}) => {
     try{
         const response = await axios.post(`http://localhost:6060/auth/verify-otp?email=${email}&valid=${valid.verify}`,{ withCredentials: true})
         if(response.data.states === false){
-           console.log(response.data)
            setError(response.data.message);
           handleVer(true);
            
         }else{
-          console.log("staging" + response.data)
           setTimeout(()=>{
             setError(response.data.message);
           },300)

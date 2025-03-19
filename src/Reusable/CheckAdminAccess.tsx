@@ -2,6 +2,7 @@ import { ReactNode, useEffect, useState } from "react";
 import axios from "axios";
 import { Navigate } from "react-router-dom";
 import { Spinner } from "flowbite-react";
+import Cookie from "js-cookie";
 
 interface Props {
     children: ReactNode;
@@ -12,21 +13,13 @@ const CheckAdminAccess: React.FC<Props> = ({ children }) => {
 
     const fetchData = async () => {
         try {
-            const token = sessionStorage.getItem("token");
-            const user_id = sessionStorage.getItem("user_id");
 
-            if (!token) {
-                setStatus(false);
-                return;
-            }
-
+            const user_id = Cookie.get("UUID");
             const response = await axios.get(`http://localhost:6060/protected/router/protect/admin/${user_id}`, {
                 withCredentials: true,
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
+
             });
-            console.log(response.data.states)
+            // console.log(response.data.states)
             if(response.data.states === false) {
                 setStatus(false)
             }else{

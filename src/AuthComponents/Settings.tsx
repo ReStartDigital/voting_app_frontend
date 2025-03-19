@@ -4,6 +4,7 @@ import React , { useState , useEffect } from 'react';
 import Title from "../Reusable/Title";
 import imageCompression from 'browser-image-compression';
 import axios from "axios";
+import Cookie from "js-cookie";
 import { Spinner } from 'flowbite-react';
 const background = require("../assets/images/background-images.jpg");
 
@@ -29,17 +30,13 @@ const Settings: React.FunctionComponent = () => {
 
   const fetchData = async () => {
     try {
-        const user_id = sessionStorage.getItem("user_id");
-        const token = sessionStorage.getItem("token");
-        if (!user_id || !token) {
+        const user_id = Cookie.get("UUID");
+        if (!user_id) {
             return;
         }
 
         const response = await axios.get(`http://localhost:6060/protected/router/user?id=${user_id}`, {
             withCredentials: true,
-            headers: {
-              Authorization: `Bearer ${token}`
-            }
         });
         if(response.data){
             console.log(response?.data);
@@ -55,28 +52,23 @@ const Settings: React.FunctionComponent = () => {
 
 const fetchUserImage = async () => {
   try {
-      const user_id = sessionStorage.getItem("user_id");
-      const token = sessionStorage.getItem("token");
-      if (!user_id || !token) {
+      const user_id = Cookie.get("UUID");
+      if (!user_id ) {
           return;
       }
 
       const response = await axios.get(`http://localhost:6060/protected/router/images/${user_id}`, {
           withCredentials: true,
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
       });
       if(response.data){
-          console.log(response?.data.message);
           setFormData(prev => ({ ...prev, image:response.data.image , organization: response.data.organization }));
 
       };
-      console.log(response.data.message);
+
       // setStatus(response.data.states === true);
   } catch (e: any) {
     setFormData(prev => ({ ...prev, image:e.response.data.image , organization: e.response.data.organization }));
-      console.error("Error fetching protected route:", e.response.data.image);
+      // console.error("Error fetching protected route:", e.response.data.image);
    
   }
 };
@@ -112,16 +104,13 @@ useEffect(()=>{
 
   const handleDelete = async()=>{
     const user_id = sessionStorage.getItem("user_id");
-    const token = sessionStorage.getItem("token");
-    if (!user_id || !token) {
+
+    if (!user_id) {
         return;
     }
 
     const response = await axios.delete(`http://localhost:6060/protected/router/delete/account/${user_id}`, {
         withCredentials: true,
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
     });
     if(response.data){
         setFormData(prev => ({ ...prev, image:response.data.image , organization: response.data.organization }));
@@ -150,8 +139,7 @@ useEffect(()=>{
     try {
       setLoading(true);
       const response = await axios.put(`http://localhost:6060/protected/router/upload/profile?id=${id}`, formDataObj, { withCredentials: true,
-        headers: { 
-          Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+        headers: {
           "Content-Type": "multipart/form-data",
           },
       });

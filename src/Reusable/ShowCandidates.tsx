@@ -30,14 +30,15 @@ const ShowCandidates: React.FC<ShowCandidatesProps> = ({ candidates, onClose }) 
                 {/* ✅ Candidates List */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {candidates.length > 0 ? (
-                        candidates.map((candidate) => (
+                        candidates.map((candidate , index) => (
                             <Profile
-                                key={candidate.name} // Use a unique ID if available
+                                key={index} // Use a unique ID if available
                                 image={candidate.image}
                                 name={candidate.name}
                                 manifesto={candidate.manifesto}
                                 position={candidate.position}
                                 title={candidate.title}
+                                votes={candidate.votes}
                             />
                         ))
                     ) : (

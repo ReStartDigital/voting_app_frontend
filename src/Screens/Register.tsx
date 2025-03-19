@@ -12,7 +12,6 @@ export interface UserDetails {
   lastname: string;
   email: string;
   password: string;
-  confirmPassword?: string;
   dateOfBirth: string;
 }
 
@@ -20,12 +19,12 @@ const Register: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [display, setDisplay] = useState<boolean>(false);
   const [state, setState] = useState(false);
+  const [ confirmPassword , setConfirmPassword] = useState("");
   const [formData, setFormData] = useState<UserDetails>({
     firstname: "",
     lastname: "",
     email: "",
     password: "",
-    confirmPassword: "",
     dateOfBirth: "",
   });
 
@@ -40,7 +39,7 @@ const Register: React.FC = () => {
           ? formData.firstname
           : toast.error("Name length must be greater than 3 characters");
 
-      if (formData.password !== formData.confirmPassword) {
+      if (formData.password !== confirmPassword) {
         toast.error("Passwords do not match");
         setLoading(false);
       } else if (convert < 18) {
@@ -70,18 +69,22 @@ const Register: React.FC = () => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     const { value, name } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
+    if (name === "confirmPassword") {
+      setConfirmPassword(value);
+    } else {
+      setFormData((prev) => ({
+        ...prev,
+        [name]: value,
+      }));
+    }
 
     setState(
-      !!formData.email &&
+        !!formData.email &&
         formData.password.length >= 8 &&
         !!formData.dateOfBirth &&
         !!formData.firstname &&
         !!formData.lastname &&
-        !!formData.confirmPassword
+        confirmPassword.length >= 8
     );
   };
 
@@ -178,7 +181,7 @@ const Register: React.FC = () => {
                   </label>
                   <input
                     name="confirmPassword"
-                    value={formData.confirmPassword}
+                    value={confirmPassword}
                     onChange={handleChange}
                     className="w-full p-3.5 border font-kanit border-gray-200 rounded-xl focus:ring-2 focus:ring-bluerry/50 focus:border-bluerry transition-all"
                     type="password"

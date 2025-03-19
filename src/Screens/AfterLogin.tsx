@@ -2,6 +2,7 @@ import React from "react";
 import { Fade } from "react-awesome-reveal";
 import Popup from "../Reusable/Popup";
 import axios from "axios";
+import Cookie from "js-cookie";
 import { toast, Toaster } from "react-hot-toast";
 const pic1 = require("../assets/videos/mockup.mp4");
 const pic2 = require("../assets/videos/macbook.mp4");
@@ -23,9 +24,8 @@ const AfterLogin: React.FC = () => {
 
     const handleAdminRegistration = async () => {
         try {
-            const token = sessionStorage.getItem("token");
-            const user_id = sessionStorage.getItem("user_id");
-            if (!token || !user_id) {
+            const user_id = Cookie.get("UUID")
+            if (!user_id) {
                 toast.error("Unauthorized action");
                 return;
             }
@@ -34,9 +34,6 @@ const AfterLogin: React.FC = () => {
             const response = await axios
                 .put(`http://localhost:6060/protected/router/change/role/${user_id}`, {}, {
                     withCredentials: true,
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                    },
                 });
             if (response.data) {
                 toast.success("Updated status", {

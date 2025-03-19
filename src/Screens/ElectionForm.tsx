@@ -55,12 +55,7 @@ export default function ElectionForm() {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         const userId = sessionStorage.getItem("user_id");
-        const token = sessionStorage.getItem("token")
 
-        if(!token) {
-            toast.error("Token is required");
-            return;
-        }
 
         if (!validateForm()) return;
 
@@ -71,19 +66,14 @@ export default function ElectionForm() {
             endTime: new Date(formData.endTime).toISOString().slice(0, 19)      // ✅ Ensure correct format
         };
 
-        console.log(electionData)
         try {
 
             setLoading(true);
-            console.log(electionData);
             const response = await axios.post(
                 "http://localhost:6060/protected/router/admin/add/election",
                 electionData,
                 {
                     withCredentials: true,
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                    },
                 }
             );
 
@@ -95,7 +85,6 @@ export default function ElectionForm() {
                 }
             });
             sessionStorage.setItem("election", response.data.id)
-            console.log(electionData);
             setLoading(false);
             toggleState();
             setFormData({ title: "", description: "", startTime: "", endTime: "" }); // Reset form

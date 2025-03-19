@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-// import { HiMapPin, HiPhone, HiEnvelope } from "react-icons/hi2";
+import axios from "axios";
 import { Link } from "react-router-dom";
 import {
   EnvelopeIcon,
@@ -8,6 +8,7 @@ import {
   ChatBubbleLeftRightIcon,
   PaperAirplaneIcon,
 } from "@heroicons/react/24/outline";
+import {Toaster , toast} from "react-hot-toast";
 
 const ContactUs: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -46,8 +47,22 @@ const ContactUs: React.FC = () => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
+  const handleSubmit = async()=>{
+    try{
+      const response = await axios.post("http://localhost:6060/auth/contact-us", formData);
+      console.log(response);
+        if(response.data){
+
+        }
+    }catch(e: any){
+      console.log(e);
+    }
+
+
+  }
   return (
     <section className="w-full min-h-screen bg-gradient-to-br from-blue-50 to-purple-50 py-16 px-4">
+      <Toaster position="top-right" />
       <div className="container mx-auto max-w-6xl">
         {/* Header Section */}
         <div className="text-center mb-16 space-y-4">
