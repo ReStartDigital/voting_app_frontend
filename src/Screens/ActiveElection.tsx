@@ -63,60 +63,90 @@ export default function ActiveElections() {
 
     if (loading) {
         return (
-            <div className="flex flex-col items-center justify-center min-h-screen space-y-4">
-                <Skeleton className="w-[90%] md:w-[60%] lg:w-[40%] h-32 rounded-lg" />
-                <Skeleton className="w-[80%] md:w-[50%] h-8" />
-                <Skeleton className="w-[70%] md:w-[40%] h-6" />
+            <div className="container mx-auto px-4 py-8 min-h-screen bg-gray-50">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {[1, 2, 3].map((i) => (
+                        <div key={i} className="bg-white rounded-xl shadow-md p-4 space-y-4">
+                            <Skeleton className="w-full h-48 rounded-lg" />
+                            <Skeleton className="w-2/3 h-6" />
+                            <Skeleton className="w-1/2 h-4" />
+                            <Skeleton className="w-full h-20" />
+                        </div>
+                    ))}
+                </div>
             </div>
         );
     }
 
     if (error) {
         return (
-            <div className="flex flex-col items-center justify-center min-h-screen p-5">
-                <Alert variant="destructive" className="max-w-md">
-                    <AlertCircle className="h-5 w-5" />
-                    <AlertTitle>Error</AlertTitle>
-                    <AlertDescription>{error}</AlertDescription>
+            <div className="flex items-center justify-center min-h-screen bg-gray-50">
+                <Alert variant="destructive" className="max-w-lg shadow-lg">
+                    <AlertCircle className="h-6 w-6" />
+                    <AlertTitle className="text-lg font-semibold">Error</AlertTitle>
+                    <AlertDescription className="mt-2">{error}</AlertDescription>
                 </Alert>
             </div>
         );
     }
 
     return (
-        <div className="p-5 min-h-screen">
-            <Toaster position={"top-right"}/>
-            <h1 className="text-3xl font-bold font-kanit text-center mb-6">Active Elections</h1>
+        <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
+            <Toaster position="top-right" />
+            
+            <div className="container mx-auto px-4 py-12">
+                <h1 className="text-4xl font-bold font-kanit text-center mb-8 text-gray-800">
+                    Active Elections
+                </h1>
 
-            {elections.length === 0 ? (
-                <p className="text-center font-kanit text-gray-600">No active elections at the moment.</p>
-            ) : (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {elections.map((election) => (
-                        <Card key={election.id} className="overflow-hidden shadow-lg">
-                            <CardHeader className="p-0">
-                                <img
-                                    src={election.image ? `data:image/jpeg;base64,${election.image}` : "/placeholder.png"}
-                                    alt={election.name}
-                                    className="w-full h-48 object-cover"
-                                    onError={(e) => (e.currentTarget.src = "/placeholder.png")} // Fallback for broken images
-                                />
-                            </CardHeader>
-                            <CardContent className="p-4">
-                                <CardTitle className="text-lg font-kanit">{election.name}</CardTitle>
-                                <p className="text-gray-600 font-kanit text-sm">{election.position}</p>
-                                <p className="mt-2 text-sm font-kanit text-gray-700">{election.manifesto}</p>
-                                <Button
-                                    className="mt-4 font-kanit p-3 text-white bg-black"
-                                    onClick={() => handleClick(election.id, election.electionId.id, election.uploadedBy.id)}
-                                >
-                                    Vote
-                                </Button>
-                            </CardContent>
-                        </Card>
-                    ))}
-                </div>
-            )}
+                {elections.length === 0 ? (
+                    <div className="flex flex-col items-center justify-center py-16">
+                        <div className="text-gray-500 text-xl font-kanit">
+                            No active elections at the moment
+                        </div>
+                    </div>
+                ) : (
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        {elections.map((election) => (
+                            <Card 
+                                key={election.id} 
+                                className="group hover:shadow-xl transition-shadow duration-300 bg-white rounded-xl overflow-hidden"
+                            >
+                                <CardHeader className="p-0 relative">
+                                    <div className="aspect-video overflow-hidden">
+                                        <img
+                                            src={election.image ? `data:image/jpeg;base64,${election.image}` : "/placeholder.png"}
+                                            alt={election.name}
+                                            className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-300"
+                                            onError={(e) => (e.currentTarget.src = "/placeholder.png")}
+                                        />
+                                    </div>
+                                </CardHeader>
+                                <CardContent className="p-6 space-y-4">
+                                    <div>
+                                        <CardTitle className="text-xl font-kanit text-gray-800 mb-2">
+                                            {election.name}
+                                        </CardTitle>
+                                        <p className="text-sm font-kanit text-blue-600 font-medium">
+                                            {election.position}
+                                        </p>
+                                    </div>
+                                    <p className="text-gray-600 font-kanit text-sm line-clamp-3">
+                                        {election.manifesto}
+                                    </p>
+                                    <Button
+                                        className="w-full py-3 bg-black hover:bg-gray-800 text-white font-kanit 
+                                                 transform transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
+                                        onClick={() => handleClick(election.id, election.electionId.id, election.uploadedBy.id)}
+                                    >
+                                        Cast Vote
+                                    </Button>
+                                </CardContent>
+                            </Card>
+                        ))}
+                    </div>
+                )}
+            </div>
         </div>
     );
 }
