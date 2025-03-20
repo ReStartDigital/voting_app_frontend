@@ -4,11 +4,11 @@ const Details = require("../assets/images/detail.png");
 
 const Home: React.FC = () => {
   return (
-    <section className="w-full min-h-screen bg-gradient-to-br from-white via-blue-50 to-blue-200">
+    <section className="w-full min-h-screen bg-gradient-to-br from-white via-blue-50 to-indigo-200">
       <div className="container mx-auto px-6 py-24 flex flex-col lg:flex-row items-center justify-between gap-20">
         {/* Text Content */}
         <div className="flex-1 space-y-12">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-kanit font-extrabold bg-gradient-to-r from-blue-600 to-blue-600 bg-clip-text text-transparent leading-tight animate-fade-in">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-kanit font-extrabold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent leading-tight animate-fade-in">
             Secure and Easy Voting
           </h1>
           <p className="text-lg md:text-xl text-gray-700 font-kanit leading-relaxed max-w-2xl">
@@ -18,7 +18,7 @@ const Home: React.FC = () => {
           </p>
           <div className="space-y-6">
             <div className="flex items-center space-x-4 group">
-              <div className="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center shadow-lg group-hover:bg-blue-700 transition-colors duration-300">
+              <div className="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center shadow-lg group-hover:bg-indigo-600 transition-colors duration-300">
                 <svg
                   className="w-6 h-6 text-white"
                   fill="none"
@@ -33,12 +33,12 @@ const Home: React.FC = () => {
                   />
                 </svg>
               </div>
-              <span className="font-kanit text-gray-700 text-lg group-hover:text-blue-600 transition-colors duration-300">
+              <span className="font-kanit text-gray-700 text-lg group-hover:text-indigo-600 transition-colors duration-300">
                 User-friendly interface
               </span>
             </div>
             <div className="flex items-center space-x-4 group">
-              <div className="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center shadow-lg group-hover:bg-blue-700 transition-colors duration-300">
+              <div className="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center shadow-lg group-hover:bg-indigo-600 transition-colors duration-300">
                 <svg
                   className="w-6 h-6 text-white"
                   fill="none"
@@ -53,12 +53,12 @@ const Home: React.FC = () => {
                   />
                 </svg>
               </div>
-              <span className="font-kanit text-gray-700 text-lg group-hover:text-blue-600 transition-colors duration-300">
+              <span className="font-kanit text-gray-700 text-lg group-hover:text-indigo-600 transition-colors duration-300">
                 Robust security measures
               </span>
             </div>
             <div className="flex items-center space-x-4 group">
-              <div className="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center shadow-lg group-hover:bg-blue-700 transition-colors duration-300">
+              <div className="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center shadow-lg group-hover:bg-indigo-600 transition-colors duration-300">
                 <svg
                   className="w-6 h-6 text-white"
                   fill="none"
@@ -73,12 +73,12 @@ const Home: React.FC = () => {
                   />
                 </svg>
               </div>
-              <span className="font-kanit text-gray-700 text-lg group-hover:text-blue-600 transition-colors duration-300">
+              <span className="font-kanit text-gray-700 text-lg group-hover:text-indigo-600 transition-colors duration-300">
                 High traffic handling
               </span>
             </div>
             <div className="flex items-center space-x-4 group">
-              <div className="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center shadow-lg group-hover:bg-blue-700 transition-colors duration-300">
+              <div className="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center shadow-lg group-hover:bg-indigo-600 transition-colors duration-300">
                 <svg
                   className="w-6 h-6 text-white"
                   fill="none"
@@ -93,7 +93,7 @@ const Home: React.FC = () => {
                   />
                 </svg>
               </div>
-              <span className="font-kanit text-gray-700 text-lg group-hover:text-blue-600 transition-colors duration-300">
+              <span className="font-kanit text-gray-700 text-lg group-hover:text-indigo-600 transition-colors duration-300">
                 Real-time updates
               </span>
             </div>
@@ -101,7 +101,7 @@ const Home: React.FC = () => {
           <div className="flex space-x-6">
             <Link
               to="/register/user"
-              className="bg-gradient-to-r from-blue-600 to-blue-600 text-white px-10 py-4 rounded-xl font-kanit text-lg font-semibold hover:from-blue-700 hover:to-blue-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+              className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-10 py-4 rounded-xl font-kanit text-lg font-semibold hover:from-blue-700 hover:to-indigo-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
             >
               Get Started
             </Link>
@@ -121,8 +121,8 @@ const Home: React.FC = () => {
             alt="Voting Illustration"
             className="w-full h-auto max-w-lg mx-auto transform hover:scale-105 transition duration-500 rounded-2xl shadow-2xl"
           />
-          <div className="absolute -bottom-12 right-4 bg-white p-6 rounded-xl shadow-xl max-w-sm border border-blue-100 transform hover:scale-105 transition duration-300">
-            <h3 className="font-kanit font-bold text-blue-600 text-xl mb-2">
+          <div className="absolute -bottom-12 right-4 bg-white p-6 rounded-xl shadow-xl max-w-sm border border-indigo-100 transform hover:scale-105 transition duration-300">
+            <h3 className="font-kanit font-bold text-indigo-600 text-xl mb-2">
               Real-time Results
             </h3>
             <p className="text-sm text-gray-600 font-kanit leading-relaxed">
@@ -136,19 +136,19 @@ const Home: React.FC = () => {
       <div className="container mx-auto px-6 py-16">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
           <div className="bg-white p-8 rounded-2xl shadow-lg text-center transform hover:scale-105 transition duration-300">
-            <h4 className="text-4xl font-kanit font-bold text-blue-600">
+            <h4 className="text-4xl font-kanit font-bold text-indigo-600">
               500K+
             </h4>
             <p className="text-gray-600 font-kanit mt-2">Votes Cast</p>
           </div>
           <div className="bg-white p-8 rounded-2xl shadow-lg text-center transform hover:scale-105 transition duration-300">
-            <h4 className="text-4xl font-kanit font-bold text-blue-600">
+            <h4 className="text-4xl font-kanit font-bold text-indigo-600">
               99.9%
             </h4>
             <p className="text-gray-600 font-kanit mt-2">Uptime</p>
           </div>
           <div className="bg-white p-8 rounded-2xl shadow-lg text-center transform hover:scale-105 transition duration-300">
-            <h4 className="text-4xl font-kanit font-bold text-blue-600">
+            <h4 className="text-4xl font-kanit font-bold text-indigo-600">
               100+
             </h4>
             <p className="text-gray-600 font-kanit mt-2">Elections Hosted</p>
