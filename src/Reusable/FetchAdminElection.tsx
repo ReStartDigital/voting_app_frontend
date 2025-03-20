@@ -4,6 +4,8 @@ import axios from "axios";
 import { toast , Toaster } from "react-hot-toast";
 import {Trash} from "lucide-react";
 import {Alert} from "flowbite-react";
+import Cookie from "js-cookie";
+import { useNavigate } from "react-router-dom";
 
 export interface Props {
     state?: string;
@@ -17,7 +19,8 @@ const FetchAdminElection: React.FunctionComponent<Props> = ({ title , state , st
     const [ display , setDisplay ] = React.useState(false);
     const [ loading , setLoading ] = React.useState(false);
     const [ deleted , setDeleted ] = React.useState(false);
-    const token = sessionStorage.getItem("token");
+    const navigate = useNavigate();
+
 
     const handleClick = (event: any)=>{
         setDisplay(true);
@@ -27,15 +30,18 @@ const FetchAdminElection: React.FunctionComponent<Props> = ({ title , state , st
         setDisplay(false);
     }
     useEffect(() => {
-        const user_id = sessionStorage.getItem("user_id");
+        const user_id = Cookie.get("UUID");
         if (!user_id) {
-            window.location.href = "/login/user";
+            navigate("/login/user");
         }
     }, []);
 
-
+    const user_id :any= Cookie.get("UUID");
+    if(!user_id){
+        navigate("/login/user");
+    }
     const handleSubmit = async(formData: FormData)=>{
-        console.log(formData);
+
         try{
             const response = await axios.post(`http://localhost:6060/protected/router/save/candidate/detail/${user_id}/${id}` , formData , {
                 withCredentials: true,
@@ -58,14 +64,10 @@ const FetchAdminElection: React.FunctionComponent<Props> = ({ title , state , st
     }
 
     const handleDelete = async()=>{
-        console.log(id);
         try{
             const response = await axios.delete(`http://localhost:6060/protected/router/get/election/delete/${id}` ,
                 {
                     withCredentials: true,
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                    }
                 })
             setTimeout(()=>{
                 setDeleted(true);
@@ -79,7 +81,7 @@ const FetchAdminElection: React.FunctionComponent<Props> = ({ title , state , st
         setLoading(false);
     }
 
-    const user_id = sessionStorage.getItem("user_id");
+
 
     return(
         <div className="w-full h-[35%] border-2 border-gray-200 flex justify-between hover:cursor-pointer items-start p-4 flex-col" >
