@@ -21,12 +21,12 @@ const Register: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [display, setDisplay] = useState<boolean>(false);
   const [state, setState] = useState(false);
+  const [ confirmPassword , setConfirmPassword] = useState("");
   const [formData, setFormData] = useState<UserDetails>({
     firstname: "",
     lastname: "",
     email: "",
     password: "",
-    confirmPassword: "",
     dateOfBirth: "",
   });
 
@@ -41,7 +41,7 @@ const Register: React.FC = () => {
               ? formData.firstname
               : toast.error("Name length must be greater than 3 characters");
 
-      if (formData.password !== formData.confirmPassword) {
+      if (formData.password !== confirmPassword) {
         toast.error("Passwords do not match");
         setLoading(false);
       } else if (convert < 18) {
@@ -71,6 +71,7 @@ const Register: React.FC = () => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     const { value, name } = e.target;
+    setConfirmPassword(value);
     setFormData({
       ...formData,
       [name]: value,
@@ -82,7 +83,7 @@ const Register: React.FC = () => {
         !!formData.dateOfBirth &&
         !!formData.firstname &&
         !!formData.lastname &&
-        !!formData.confirmPassword
+        !!confirmPassword
     );
   };
 
@@ -119,7 +120,7 @@ const Register: React.FC = () => {
                         name="firstname"
                         value={formData.firstname}
                         onChange={handleChange}
-                        className="w-full p-3.5 border border-gray-200 rounded-xl focus:ring-2 focus:ring-bluerry/50 focus:border-bluerry transition-all"
+                        className="w-full p-3.5 border font-kanit border-gray-200 rounded-xl focus:ring-2 focus:ring-bluerry/50 focus:border-bluerry transition-all"
                         type="text"
                         placeholder="Kwame"
                         required
@@ -134,7 +135,7 @@ const Register: React.FC = () => {
                         name="lastname"
                         value={formData.lastname}
                         onChange={handleChange}
-                        className="w-full p-3.5 border border-gray-200 rounded-xl focus:ring-2 focus:ring-bluerry/50 focus:border-bluerry transition-all"
+                        className="w-full p-3.5 border font-kanit border-gray-200 rounded-xl focus:ring-2 focus:ring-bluerry/50 focus:border-bluerry transition-all"
                         type="text"
                         placeholder="Boakye"
                         required
@@ -150,7 +151,7 @@ const Register: React.FC = () => {
                       name="email"
                       value={formData.email}
                       onChange={handleChange}
-                      className="w-full p-3.5 border border-gray-200 rounded-xl focus:ring-2 focus:ring-bluerry/50 focus:border-bluerry transition-all"
+                      className="w-full p-3.5 border font-kanit border-gray-200 rounded-xl focus:ring-2 focus:ring-bluerry/50 focus:border-bluerry transition-all"
                       type="email"
                       placeholder="restartdigital@gmail.com"
                       required
@@ -166,7 +167,7 @@ const Register: React.FC = () => {
                         name="password"
                         value={formData.password}
                         onChange={handleChange}
-                        className="w-full p-3.5 border border-gray-200 rounded-xl focus:ring-2 focus:ring-bluerry/50 focus:border-bluerry transition-all"
+                        className="w-full p-3.5 border font-kanit border-gray-200 rounded-xl focus:ring-2 focus:ring-bluerry/50 focus:border-bluerry transition-all"
                         type="password"
                         placeholder="••••••••"
                         required
@@ -179,9 +180,9 @@ const Register: React.FC = () => {
                     </label>
                     <input
                         name="confirmPassword"
-                        value={formData.confirmPassword}
+                        value={confirmPassword}
                         onChange={handleChange}
-                        className="w-full p-3.5 border border-gray-200 rounded-xl focus:ring-2 focus:ring-bluerry/50 focus:border-bluerry transition-all"
+                        className="w-full p-3.5 border font-kanit border-gray-200 rounded-xl focus:ring-2 focus:ring-bluerry/50 focus:border-bluerry transition-all"
                         type="password"
                         placeholder="••••••••"
                         required
@@ -195,7 +196,7 @@ const Register: React.FC = () => {
                   </label>
                   <input
                       value={formData.dateOfBirth}
-                      className="w-full p-3.5 border border-gray-200 rounded-xl focus:ring-2 focus:ring-bluerry/50 focus:border-bluerry transition-all"
+                      className="w-full p-3.5 border border-gray-200 rounded-xl font-kanit focus:ring-2 focus:ring-bluerry/50 focus:border-bluerry transition-all"
                       type="date"
                       name="dateOfBirth"
                       onChange={handleChange}
