@@ -17,7 +17,7 @@ const Protect: React.FC<Props> = ({ children }) => {
                 withCredentials: true,
 
             });
-            if(response.data){
+            if(response.data.states === true){
                 setStatus(true)
             }
         } catch (e) {

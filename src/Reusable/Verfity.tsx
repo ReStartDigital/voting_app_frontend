@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from "axios";
 import { Spinner } from 'flowbite-react';
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -18,6 +19,7 @@ const Verify: React.FC<Option> = ({ handleVer , email}) => {
   const [otp, setOtp] = useState<string[]>(['', '', '', '' , '', '']);
   const [ error , setError ] = useState("");
   const [ status , setstatus ] = useState<boolean>(false);
+  const navigate = useNavigate();
 
 
   // Handle input change (for entering a digit)
@@ -69,7 +71,7 @@ const Verify: React.FC<Option> = ({ handleVer , email}) => {
           },300)
           setstatus(false)
           setError("")
-          window.location.href = "/login/user";
+          navigate("/login/user");
           handleVer(false);
         }
         

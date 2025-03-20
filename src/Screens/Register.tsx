@@ -30,6 +30,17 @@ const Register: React.FC = () => {
     dateOfBirth: "",
   });
 
+
+  React.useEffect(() => {
+    setState(
+        !!formData.email &&
+        formData.password.length >= 8 &&
+        !!formData.dateOfBirth &&
+        !!formData.firstname &&
+        !!formData.lastname &&
+        formData.password === confirmPassword
+    );
+  }, [formData, confirmPassword]);
   const handleSubmit = async (e: React.FormEvent) => {
     try {
       e.preventDefault();
@@ -56,7 +67,6 @@ const Register: React.FC = () => {
               withCredentials: true,
             }
         );
-
         if (response.data.states) {
           setDisplay(true);
           setLoading(false);
@@ -64,6 +74,9 @@ const Register: React.FC = () => {
       }
     } catch (err: any) {
       toast.error(err.response.data.message);
+      console.log(err);
+      setLoading(false);
+    }finally {
       setLoading(false);
     }
   };
@@ -71,24 +84,15 @@ const Register: React.FC = () => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     const { value, name } = e.target;
-    setConfirmPassword(value);
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-
-    setState(
-        !!formData.email &&
-        formData.password.length >= 8 &&
-        !!formData.dateOfBirth &&
-        !!formData.firstname &&
-        !!formData.lastname &&
-        !!confirmPassword
-    );
+    setFormData(prev => ({ ...prev, [name]: value }));
   };
 
   const handleVer = (value: boolean): void => {
     setDisplay(value);
+  };
+
+  const handleConfirmPasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setConfirmPassword(e.target.value);
   };
 
   return (
@@ -181,7 +185,7 @@ const Register: React.FC = () => {
                     <input
                         name="confirmPassword"
                         value={confirmPassword}
-                        onChange={handleChange}
+                        onChange={handleConfirmPasswordChange}
                         className="w-full p-3.5 border font-kanit border-gray-200 rounded-xl focus:ring-2 focus:ring-bluerry/50 focus:border-bluerry transition-all"
                         type="password"
                         placeholder="••••••••"
