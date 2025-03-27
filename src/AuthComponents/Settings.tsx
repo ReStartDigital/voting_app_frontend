@@ -103,7 +103,7 @@ useEffect(()=>{
   };
 
   const handleDelete = async()=>{
-    const user_id = sessionStorage.getItem("user_id");
+    const user_id = Cookie.get("UUID")
 
     if (!user_id) {
         return;
@@ -119,7 +119,7 @@ useEffect(()=>{
   }
   
   const handleSubmit = async(e: React.FormEvent)=>{
-    const id = sessionStorage.getItem("user_id");
+    const id = Cookie.get("UUID");
     e.preventDefault();
     if (!formData.image) {
       alert("Please select a file before submitting.");

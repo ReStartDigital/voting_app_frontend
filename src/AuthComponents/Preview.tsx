@@ -8,6 +8,7 @@ import PreviewCard from "../Screens/PreviewCard";
 import { Alert, AlertDescription, AlertTitle } from "../components/ui/alert";
 import { Terminal } from "lucide-react";
 import Cookie from "js-cookie";
+import {Skeleton} from "../components/ui/skeleton";
 
 const Preview = () => {
     const [data, setData] = useState<Props[]>([]);
@@ -17,7 +18,13 @@ const Preview = () => {
 
     const fetchElection = async () => {
         if (!electionId) {
-            toast.error("Missing Election ID");
+            toast.error("Missing Election ID",{
+                style: {
+                    backgroundColor: "black",
+                    fontFamily: "kanit",
+                    color: "red"
+                }
+            });
             return;
         }
 
@@ -29,7 +36,13 @@ const Preview = () => {
             setData(response.data);
         } catch (error) {
             console.error("Error fetching election:", error);
-            toast.error("Failed to fetch election details.");
+            toast.error("Failed to fetch election details." , {
+                style: {
+                    backgroundColor: "black",
+                    fontFamily: "kanit",
+                    color: "red"
+                }
+            });
         }
     };
 
@@ -44,7 +57,13 @@ const Preview = () => {
             setCandidate(response.data);
         } catch (error) {
             console.error("Error fetching candidates:", error);
-            toast.error("Failed to fetch candidates.");
+            toast.error("Failed to fetch candidates.", {
+                style: {
+                    backgroundColor: "black",
+                    fontFamily: "kanit",
+                    color: "red"
+                }
+            });
         }
     };
 
@@ -67,7 +86,8 @@ const Preview = () => {
 
             <div className="w-full h-[80vh] flex justify-start items-start flex-col gap-4 p-4">
                 {loading ? (
-                    <p className="text-center text-gray-500">Loading...</p>
+                    <><Skeleton className="w-full h-64 rounded-lg"/><Skeleton className="w-2/3 h-48"/><Skeleton
+                        className="w-1/2 h-4"/><Skeleton className="w-full h-20"/></>
                 ) : data.length > 0 ? (
                     data.map((item, index) => (
                         <PreviewCard

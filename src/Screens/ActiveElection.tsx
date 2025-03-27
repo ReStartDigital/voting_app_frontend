@@ -35,7 +35,6 @@ export default function ActiveElections() {
             );
             setElections(Array.isArray(response.data) ? response.data : []);
         } catch (e: any) {
-            console.error("Error fetching elections:", e);
             setError("Failed to load elections. Please try again.");
         } finally {
             setLoading(false);
@@ -50,10 +49,22 @@ export default function ActiveElections() {
                 { withCredentials: true }
             );
             console.log("Vote Response:", response.data);
-            toast.success(response?.data?.message);
+            toast.success(response?.data?.message, {
+                style: {
+                    backgroundColor: "black",
+                    fontFamily: "kanit",
+                    color: "white"
+                }
+            });
         } catch (error: any) {
-            console.error("Vote Error:", error);
-            toast.error("Failed to cast vote. Please try again.");
+            // console.error("Vote Error:", error);
+            toast.error("Failed to cast vote. Please try again.",{
+                style: {
+                    backgroundColor: "black",
+                    fontFamily: "kanit",
+                    color: "white"
+                }
+            });
         }
     };
 
@@ -102,11 +113,11 @@ export default function ActiveElections() {
                 {elections.length === 0 ? (
                     <div className="flex flex-col items-center justify-center py-16">
                         <div className="text-gray-500 text-xl font-kanit">
-                            No active elections at the moment
+                            <span className="font-kanit">No active elections at the moment</span>
                         </div>
                     </div>
                 ) : (
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                         {elections.map((election) => (
                             <Card 
                                 key={election.id} 

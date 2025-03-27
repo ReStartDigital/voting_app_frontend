@@ -20,12 +20,10 @@ const Launch = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
 
-    const id = Cookie.get("UUID")
-
-
+    const id = Cookie.get("UUID");
     useEffect(() => {
         if (id ) {
-            FetchElection();
+            FetchElection().then(r => console.log(r));
         } else {
             setLoading(false);
             setError("User not authenticated");
@@ -52,9 +50,9 @@ const Launch = () => {
                 `http://localhost:6060/protected/router/get/admin/election/${id}`,
                 {
                     withCredentials: true,
-
                 }
             );
+            console.log(response.data);
             setData(response.data);
         } catch (error: any) {
             setError("Failed to fetch elections");

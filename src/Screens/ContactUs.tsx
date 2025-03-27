@@ -50,7 +50,7 @@ const ContactUs: React.FC = () => {
   const handleSubmit = async()=>{
     try{
       const response = await axios.post("http://localhost:6060/auth/contact-us", formData);
-      console.log(response);
+      console.log(response.data);
         if(response.data){
 
         }

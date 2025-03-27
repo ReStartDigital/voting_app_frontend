@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import { Spinner } from "flowbite-react";
 import { LockClosedIcon, EnvelopeIcon } from "@heroicons/react/24/outline";
-// import Logo from "../assets/images/logo.png";
+
 
 type User = {
   email: string;
@@ -17,6 +17,7 @@ const Login: React.FC = () => {
     password: "",
   });
   const [errorMessage, setErrorMessage] = useState("");
+  const navigate = useNavigate();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value, name } = e.target;
@@ -34,9 +35,7 @@ const Login: React.FC = () => {
       );
       console.log(response.data);
       if (response.data.userId) {
-        // sessionStorage.setItem("token", response.data.token);
-        // sessionStorage.setItem("user_id", response.data.userId);
-        window.location.href = "/user/default/page";
+        navigate("/user/default/page");
       } else {
         setErrorMessage(response?.data?.message || "Login failed");
       }
@@ -53,11 +52,6 @@ const Login: React.FC = () => {
       <div className="w-full max-w-md bg-white rounded-2xl shadow-xl overflow-hidden">
         <div className="p-8">
           <div className="flex flex-col items-center mb-8">
-            {/* <img
-              src={Logo}
-              alt="eVote Logo"
-              className="w-24 h-24 mb-4 object-contain"
-            /> */}
             <h1 className="text-3xl font-kanit font-bold text-bluerry">
               Welcome Back
             </h1>

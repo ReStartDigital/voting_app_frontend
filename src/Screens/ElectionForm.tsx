@@ -3,6 +3,7 @@ import {Label, TextInput, Textarea, Button, Spinner} from "flowbite-react";
 import axios from "axios";
 import {toast, Toaster} from "react-hot-toast";
 import Usestore from "../store/UseStore";
+import Cookie from "js-cookie";
 
 export interface ElectionForm {
     adminId?: string | null;
@@ -29,11 +30,11 @@ export default function ElectionForm() {
 
 
     useEffect(() => {
-        const userId = sessionStorage.getItem("user_id") || "";
+        const userId = Cookie.get("UUID");
         setFormData((prev) => ({ ...prev, adminId: userId }));
     }, []);
 
-    const electionId = sessionStorage.getItem("user_id") || "";
+    const electionId = Cookie.get("UUID");
 
     // Handle input change
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -54,7 +55,7 @@ export default function ElectionForm() {
     // Handle form submission
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        const userId = sessionStorage.getItem("user_id");
+        const userId = Cookie.get("UUID");
 
 
         if (!validateForm()) return;
@@ -67,7 +68,7 @@ export default function ElectionForm() {
         };
 
         try {
-
+            console.log(electionData);
             setLoading(true);
             const response = await axios.post(
                 "http://localhost:6060/protected/router/admin/add/election",
@@ -76,7 +77,7 @@ export default function ElectionForm() {
                     withCredentials: true,
                 }
             );
-
+            console.log(response.data);
             toast.success("Election created successfully!" , {
                 style: {
                     backgroundColor: "black",
