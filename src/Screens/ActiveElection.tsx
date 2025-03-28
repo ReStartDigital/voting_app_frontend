@@ -48,7 +48,7 @@ export default function ActiveElections() {
                 {},
                 { withCredentials: true }
             );
-            console.log("Vote Response:", response.data);
+            // console.log("Vote Response:", response.data);
             toast.success(response?.data?.message, {
                 style: {
                     backgroundColor: "black",
@@ -57,7 +57,6 @@ export default function ActiveElections() {
                 }
             });
         } catch (error: any) {
-            // console.error("Vote Error:", error);
             toast.error("Failed to cast vote. Please try again.",{
                 style: {
                     backgroundColor: "black",
