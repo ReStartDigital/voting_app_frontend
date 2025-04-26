@@ -29,7 +29,7 @@ const Login: React.FC = () => {
     try {
       setLoading(true);
       const response = await axios.post(
-        "http://localhost:6060/auth/login",
+        "http://16.170.217.100:6060/auth/login",
         formData,
         { withCredentials: true }
       );
